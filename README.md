@@ -16,7 +16,7 @@ counterpart's numerical conduct is held constant.
   register analysis.
 - `suspicion_coding_sheet.csv`, `suspicion_coding_sheet_CODED.csv` — single-rater
   coding of free-text identity reasons into the pre-registered cue categories.
-- `Coding_Review.txt` — human-readable coding worksheet for the above.
+- `Coding Review.txt` — human-readable coding worksheet for the above.
 
 ## Data and anonymisation
 
