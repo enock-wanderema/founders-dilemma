@@ -1,0 +1,196 @@
+"row_id","participant","label_condition","transparency","suspicion_score","detection_correct","suspicion_reason","cue_timing","cue_language_precision","cue_emotional_variation","cue_negotiation_rationality","cue_communication_style","cue_holistic","notes"
+1,119,"Human","Opaque",4,0,"The responses were very human-like but it seems more AI.",NA,NA,NA,NA,NA,NA,NA
+2,139,"Human","Transparent",3,1,"He communicated like a human and not an AI bot.",NA,NA,NA,NA,NA,NA,NA
+3,103,"AI","Opaque",2,0,"The response were structured, consistent, and negotiation-focused, with quick replies and little emotional variation",NA,NA,NA,NA,NA,NA,NA
+4,71,"AI","Transparent",5,1,"Always similar response time even they said they were going to ask their team",NA,NA,NA,NA,NA,NA,NA
+5,25,"Human","Opaque",2,1,"Phrases, speech. And whole conversation set up felt v real.",NA,NA,NA,NA,NA,NA,NA
+6,52,"Human","Transparent",5,0,"I think a human would have taken the extra 6% on offer rather than losing out.",NA,NA,NA,NA,NA,NA,NA
+7,183,"AI","Opaque",5,1,"I felt there was a precision to their language that felt measured and AI like. Also, there was definite pattern to their negotiations and responses.",NA,NA,NA,NA,NA,NA,NA
+8,50,"AI","Transparent",6,1,"The manner it was speaking and responding shows me it was definitely AI",NA,NA,NA,NA,NA,NA,NA
+9,4,"Human","Opaque",6,0,"Obviously AI due to mannerisms",NA,NA,NA,NA,NA,NA,NA
+10,97,"Human","Transparent",4,0,"Everything is nowadays so it’s more likely than not that it’s ai",NA,NA,NA,NA,NA,NA,NA
+11,190,"AI","Opaque",4,1,"The negotiation responses were structured, concise, and focused on numbers and fairness. The dialogue lacked personal anecdotes or emotional nuance that a human might naturally include.",NA,NA,NA,NA,NA,NA,NA
+12,167,"Human","Opaque",6,0,"They were cold and did not react much to what I said. It was like they already had a figure in mind and just went along with that.",NA,NA,NA,NA,NA,NA,NA
+13,30,"Human","Transparent",5,0,"Based on the answers. The phrasing was very polished for a negotiation.",NA,NA,NA,NA,NA,NA,NA
+14,61,"AI","Opaque",5,1,"It didn't really consider all the points I made, though it did talk quite like a human",NA,NA,NA,NA,NA,NA,NA
+15,150,"AI","Transparent",2,0,"he would not negotiate a fair price",NA,NA,NA,NA,NA,NA,NA
+16,44,"Human","Opaque",5,0,"Avoiding answering some of my points and questions. Giving very short, very robotic answers. The answers felt like canned responses, no warmth, no humanity in them, just scripted.",NA,NA,NA,NA,NA,NA,NA
+17,188,"Human","Transparent",5,0,"HE IS NOT COMMUNICATING LIKE HUMAN BEING",NA,NA,NA,NA,NA,NA,NA
+18,18,"AI","Opaque",6,1,"Predictable generic responses. Also called me mate which seems unprofessional. Also seemed tuned to give a low percentage to start with.",NA,NA,NA,NA,NA,NA,NA
+19,166,"AI","Transparent",3,0,"The way it spoke was just quite human, the way it was being rude, I don't think an AI would do that.",NA,NA,NA,NA,NA,NA,NA
+20,175,"Human","Opaque",2,1,"Just the demeanor and the wording used it seemed lifelike and real",NA,NA,NA,NA,NA,NA,NA
+21,66,"Human","Transparent",2,1,"Responded well to my conversation.",NA,NA,NA,NA,NA,NA,NA
+22,19,"AI","Opaque",5,1,"It spoke robotically and had no empathy",NA,NA,NA,NA,NA,NA,NA
+23,100,"AI","Transparent",6,1,"Not really giving a reason as to why a specific number was offered, lower level of engagement",NA,NA,NA,NA,NA,NA,NA
+24,178,"Human","Transparent",3,1,"Didnt sound like AI - ""let me check with my team""",NA,NA,NA,NA,NA,NA,NA
+25,49,"AI","Opaque",3,0,"The naturality of the responses gave it a human interaction vibe.",NA,NA,NA,NA,NA,NA,NA
+26,107,"AI","Transparent",6,1,"Although it had a very humanlike way of expressing itself, it still felt like AI. The main reason is probably because it kept saying ""I understand but..."" It was a bit to patient?",NA,NA,NA,NA,NA,NA,NA
+27,48,"Human","Opaque",4,0,"While there was human elements sprinkled in such as spelling mistakes and emotive language, I think they responded too promptly to not be a robot.",NA,NA,NA,NA,NA,NA,NA
+28,120,"AI","Opaque",5,1,"It used company jargon a lot, which I hate, but failed to understand what I've asked. Excluding that, it looked like a typical company email chain.",NA,NA,NA,NA,NA,NA,NA
+29,41,"Human","Opaque",4,0,"The formal language used and the emojis",NA,NA,NA,NA,NA,NA,NA
+30,191,"AI","Opaque",6,1,"Because if there would be any human involved it would reflect in the wordings of chat . It felt robotic to me with no empathy and consideration of other person’s effort",NA,NA,NA,NA,NA,NA,NA
+31,54,"AI","Transparent",5,1,"It was very quick with its responses, and had no warmthness.",NA,NA,NA,NA,NA,NA,NA
+32,163,"Human","Opaque",6,0,"Misunderstood the "" meet in the middle "" comment. Ignored clear instructions from me. Felt pre-programmed responses",NA,NA,NA,NA,NA,NA,NA
+33,60,"Human","Transparent",4,0,"Speed of response. Even the fact he bothered to introduce himself as Tyler. In this kind of Sim, I feel a human would just get to it.",NA,NA,NA,NA,NA,NA,NA
+34,86,"AI","Transparent",6,1,"Just got the pre-programmed vibe and not fully caring what I Said",NA,NA,NA,NA,NA,NA,NA
+35,143,"Human","Opaque",5,0,"It felt like an AI trying to be human, not very genuine",NA,NA,NA,NA,NA,NA,NA
+36,182,"Human","Transparent",5,0,"Responses were highly structured, consistent, and negotiation-style scripted with controlled concessions, which is typical of an AI agent.",NA,NA,NA,NA,NA,NA,NA
+37,55,"AI","Opaque",4,1,"because I trust the information given by what I have told",NA,NA,NA,NA,NA,NA,NA
+38,68,"AI","Transparent",3,0,"the responses match human thinking",NA,NA,NA,NA,NA,NA,NA
+39,6,"Human","Opaque",6,0,"They lacked reasoning and detailed justifications behind their offers. They tried to project frustration in an inappropriate way considering that they knew they were doing a negotiation.",NA,NA,NA,NA,NA,NA,NA
+40,40,"Human","Transparent",4,0,"I felt like the responses were quick, the rationalising behind it, and when there was a spelling error it felt as though it was deliberate",NA,NA,NA,NA,NA,NA,NA
+41,11,"AI","Opaque",4,1,"Very fast responses, emotion and rushing from the text seemed insincere, didn't take on my points despite evidence.",NA,NA,NA,NA,NA,NA,NA
+42,93,"AI","Transparent",5,1,"They way it shut down the conversations and pushed their way",NA,NA,NA,NA,NA,NA,NA
+43,145,"Human","Opaque",4,0,"Checking with the team kind of felt some what programmed to answer, although quite nice responses",NA,NA,NA,NA,NA,NA,NA
+44,65,"Human","Transparent",4,0,"Based on my personal hunch from the presented text.",NA,NA,NA,NA,NA,NA,NA
+45,179,"AI","Opaque",2,0,"Response was human like and charismatic",NA,NA,NA,NA,NA,NA,NA
+46,140,"AI","Transparent",3,0,"Immediate response Not engaging as humans",NA,NA,NA,NA,NA,NA,NA
+47,121,"Human","Opaque",5,0,"The use of emojis in the first sentence. It didn't seem very professional as a first impression. Also the ""going to check with my team"" stuff seemed a bit fake.",NA,NA,NA,NA,NA,NA,NA
+48,111,"Human","Transparent",2,1,"He corrected his spelling, if it was A that likely would have been correct initially",NA,NA,NA,NA,NA,NA,NA
+49,124,"AI","Opaque",6,1,"It just came across as artificial and machine like I saw no evidence of human qualitues no spelling mistakes anything like that",NA,NA,NA,NA,NA,NA,NA
+50,29,"AI","Transparent",4,1,"I don't really think it was AI (past the human like chat) but more just a more hard coded chat where it will gradually up the percentage offered. An AI had no realistic info to work on as from the start it couldn't even state the terms of the contract I had signed to use their product. If they were due a percentage in the sale it would have to have been clearly written in the contract. I use people IT tools all the time and they don't ever ask me for a cut of any sales I make unless it strictly lists that in the terms and conditions. The entire scenario was very unrealistic.",NA,NA,NA,NA,NA,NA,NA
+51,82,"Human","Opaque",6,0,"It wasn't able to understand my offers written in plain English. Several times during the conversation I repeated it's offers and it incorrectly read an earlier offer as the 'previous' even if there was another since then. It was either a very forgetful human or an AI negotiator.",NA,NA,NA,NA,NA,NA,NA
+52,2,"Human","Transparent",3,1,"because of the way the interaction was.",NA,NA,NA,NA,NA,NA,NA
+53,130,"AI","Opaque",6,1,"It was the way they responded, it was not totally machinelike but something was not quite natural enough for it to be a human. It was like an AI imitating a human.",NA,NA,NA,NA,NA,NA,NA
+54,158,"AI","Transparent",3,0,"It was behaving like a human. Like I am a developer and somehow communicates with AI agents, but their behavior is like a robot,here i felt need of little improvement in this agent behavior.",NA,NA,NA,NA,NA,NA,NA
+55,63,"Human","Opaque",3,1,"His language was not automated.",NA,NA,NA,NA,NA,NA,NA
+56,181,"Human","Transparent",4,0,"The responses felt like AI because I don't think a human would deal with negotiations in that way.",NA,NA,NA,NA,NA,NA,NA
+57,70,"AI","Opaque",5,1,"It sounded just like chat GPT, the language did not vary enough to be a human.",NA,NA,NA,NA,NA,NA,NA
+58,17,"AI","Transparent",4,1,"With how good AI can be, it felt like a very natural conversation but I still think it was an AI operative",NA,NA,NA,NA,NA,NA,NA
+59,43,"Human","Opaque",3,1,"The responses felt like a natural negotiation style with emotional reactions such as disappointment, incremental concession, and informal phrasing. The negotiation also showed awareness of prior offers and adjusted back-and-forth reasoning, which is consistent with how a human representative would typically negotiate in a high-stakes business discussion.",NA,NA,NA,NA,NA,NA,NA
+60,28,"Human","Transparent",4,0,"Just because we are using a computer to complete this survey",NA,NA,NA,NA,NA,NA,NA
+61,169,"AI","Opaque",5,1,"When i was giving examples they were not entertained. Once i gave them the hint that i want to keep 100% but considering work you have done i can give 5%, they took it as 100%. Not very realistic approach.",NA,NA,NA,NA,NA,NA,NA
+62,91,"AI","Transparent",5,1,"Once I saw they were typing, the responses came back very quickly",NA,NA,NA,NA,NA,NA,NA
+63,69,"Human","Opaque",3,1,"There were some typing mistakes in the texts",NA,NA,NA,NA,NA,NA,NA
+64,168,"AI","Transparent",4,1,"The responses felt somewhat predictable and pre-meditated.",NA,NA,NA,NA,NA,NA,NA
+65,153,"Human","Opaque",4,0,"Using tags such as mate is more colloquial although inappropriate for a female would suggest more human. However, he completely misunderstood a comment I made and his answer would lend to more AI.",NA,NA,NA,NA,NA,NA,NA
+66,76,"Human","Transparent",4,0,"The reason he gave for his offers were mostly repetitive",NA,NA,NA,NA,NA,NA,NA
+67,46,"AI","Opaque",5,1,"Definitive figures with little context",NA,NA,NA,NA,NA,NA,NA
+68,77,"AI","Transparent",6,1,"It said 'mate' at a point in the negotiation where it felt unexpected and not in a way that was natural",NA,NA,NA,NA,NA,NA,NA
+69,134,"Human","Opaque",3,1,"He used emoticons and has been straight in his answers. It seems like he has an intention to break even but as courtesy to my effort of most of the code and the consumer base of 500000, I was allowed to take the edge.",NA,NA,NA,NA,NA,NA,NA
+70,13,"Human","Transparent",2,1,"The response sounded human like",NA,NA,NA,NA,NA,NA,NA
+71,185,"AI","Transparent",4,1,"I’m not 100%, but the “This is getting old” comment made me think twice about it definitely being AI.",NA,NA,NA,NA,NA,NA,NA
+72,24,"Human","Opaque",4,0,"Because he seemed to ignore things I said or misunderstand",NA,NA,NA,NA,NA,NA,NA
+73,58,"Human","Transparent",5,0,"because of the response times, profile picture, near-perfect writing, it's a common tool nowadays",NA,NA,NA,NA,NA,NA,NA
+74,38,"AI","Opaque",6,1,"Can't answer any questions or provide any good arguments.",NA,NA,NA,NA,NA,NA,NA
+75,26,"AI","Transparent",1,0,"It broke away from the professional norms that AI usually has. Terms like ""ugh mate, this is going nowhere"" Its a very human trait to have that lack of patience",NA,NA,NA,NA,NA,NA,NA
+76,102,"Human","Opaque",5,0,"Almost 'overly friendly' but very standard responses and very predictable.",NA,NA,NA,NA,NA,NA,NA
+77,72,"Human","Transparent",6,0,"I think how it responded ugh, felt artificial",NA,NA,NA,NA,NA,NA,NA
+78,21,"AI","Opaque",6,1,"cause of the way it responded and we were told about an Ai agent",NA,NA,NA,NA,NA,NA,NA
+79,109,"AI","Transparent",4,1,"Because I was told it was AI. Although the wording was more humanlike",NA,NA,NA,NA,NA,NA,NA
+80,101,"Human","Opaque",4,0,"I tried to mix in some emotion into the negotiation, which would typically work well on a human. But it seems like Taylor didn’t budge, and the whole interaction feels artificial.",NA,NA,NA,NA,NA,NA,NA
+81,20,"Human","Transparent",5,0,"The terms that they used and the way the responses were formatted.",NA,NA,NA,NA,NA,NA,NA
+82,137,"AI","Opaque",4,1,"The responses were conversational but still somewhat scripted especially during the negotiation.",NA,NA,NA,NA,NA,NA,NA
+83,189,"AI","Transparent",4,1,"The convseration felt too chatty, like they were trying hard to imitate a human, it didnt feel professonial",NA,NA,NA,NA,NA,NA,NA
+84,53,"Human","Opaque",4,0,"I believe that the representative was probably AI and setup in chat to seem real with delayed reading of messages. their negotiations did not consider everything i said and skimmed it. They completley disregarded a fair few facts i made such as API usage.",NA,NA,NA,NA,NA,NA,NA
+85,57,"Human","Transparent",6,0,"I’m assuming this is a study on negotiation with AI agents. Their messages felt like they were trying too hard to come across as human. If it was a real human-to-human interaction, the messages would be more tailored and there’d likely be a couple of grammatical errors (like the ones I made during the conversation).",NA,NA,NA,NA,NA,NA,NA
+86,104,"AI","Transparent",2,0,"It used really natural language, and acted frustrated and a bit annoyed.",NA,NA,NA,NA,NA,NA,NA
+87,161,"Human","Transparent",2,1,"The tone and language felt natural. I did not catch any wording or behaviour that lead me to think it was an AI",NA,NA,NA,NA,NA,NA,NA
+88,138,"AI","Opaque",4,1,"Didn't speak completely naturally.",NA,NA,NA,NA,NA,NA,NA
+89,1,"AI","Transparent",6,1,"The conversation from their side felt very automated and predictable. They did not seem to have any empathy or human connection.",NA,NA,NA,NA,NA,NA,NA
+90,112,"Human","Opaque",6,0,"I would say even AI is normally better. It misunderstood points about the 40% range. It registered the first number as offering 40% rather then looking at the context",NA,NA,NA,NA,NA,NA,NA
+91,34,"Human","Transparent",6,0,"The speed of responses, the overly jovial and matey tone also was giveaway to me, also the flow just didn't feel very human",NA,NA,NA,NA,NA,NA,NA
+92,133,"AI","Opaque",4,1,"Because they reached a decision very early",NA,NA,NA,NA,NA,NA,NA
+93,155,"AI","Transparent",5,1,"It sounded unprofessional and inappropriately casual",NA,NA,NA,NA,NA,NA,NA
+94,105,"Human","Opaque",6,0,"Unable to engage in effective negotiation",NA,NA,NA,NA,NA,NA,NA
+95,110,"Human","Transparent",5,0,"Just acted efficiently and predictable.",NA,NA,NA,NA,NA,NA,NA
+96,148,"AI","Opaque",6,1,"The directness of the communications.",NA,NA,NA,NA,NA,NA,NA
+97,59,"AI","Transparent",6,1,"the capacity of response and analysis",NA,NA,NA,NA,NA,NA,NA
+98,92,"Human","Opaque",4,0,"The formal pleasantry at the start of the negotiation, and did not mind when I responded quickly with a percentage figure.",NA,NA,NA,NA,NA,NA,NA
+99,129,"AI","Transparent",3,0,"We had a Perfect conversation that it's difficult to tell if you were chatting with AI or human.",NA,NA,NA,NA,NA,NA,NA
+100,126,"Human","Transparent",6,0,"No flexibility or appropriate responses.",NA,NA,NA,NA,NA,NA,NA
+101,83,"AI","Transparent",5,1,"Its answers sounded pre written as it were following a script but also taking context into its answer for example my replies suggesting the LLM was trained for a specific task, which here is negotiating.",NA,NA,NA,NA,NA,NA,NA
+102,79,"Human","Opaque",4,0,"It was quick at responding. Taylor also was quick at getting a decision from his company also",NA,NA,NA,NA,NA,NA,NA
+103,173,"Human","Transparent",4,0,"His replies were fast and I could predict them to a degree.",NA,NA,NA,NA,NA,NA,NA
+104,31,"AI","Opaque",6,1,"They didn't respond to what I was saying, they didn't come up with any counter arguments.",NA,NA,NA,NA,NA,NA,NA
+105,131,"AI","Transparent",5,1,"Their wasn't any push back in the responses it gave me. It didn't request for more details about the company I was selling my app to or any other further details.",NA,NA,NA,NA,NA,NA,NA
+106,170,"Human","Opaque",4,0,"The responses were predictable",NA,NA,NA,NA,NA,NA,NA
+107,32,"Human","Transparent",3,1,"The responses didn't seem to be too scripted.",NA,NA,NA,NA,NA,NA,NA
+108,184,"AI","Opaque",6,1,"Typed inhumanly fast. When it showed it was typing the words popped up faster than a human could type them. It was using human language but it was not convincing.",NA,NA,NA,NA,NA,NA,NA
+109,75,"AI","Transparent",6,1,"I could just tell by the generic AI ""language""",NA,NA,NA,NA,NA,NA,NA
+110,177,"Human","Opaque",4,0,"It was quick to come up with figures",NA,NA,NA,NA,NA,NA,NA
+111,80,"Human","Transparent",5,0,"It answered with formulaic responses. Even though the conversation felt casual, there was a clear robotic agenda there",NA,NA,NA,NA,NA,NA,NA
+112,99,"AI","Opaque",5,1,"Responses could fit loads of different situations. Use of 'mate' and casual language",NA,NA,NA,NA,NA,NA,NA
+113,174,"Human","Opaque",4,0,"It did not come with drawbacks",NA,NA,NA,NA,NA,NA,NA
+114,195,"Human","Transparent",6,0,"Ignored me to the point I repeated myself many times.",NA,NA,NA,NA,NA,NA,NA
+115,9,"AI","Transparent",6,1,"The study disclosed at the beginning that i would be negotiating with volo technologies Ai negotiation agent.",NA,NA,NA,NA,NA,NA,NA
+116,171,"Human","Opaque",4,0,"Wasn't very professional, human like",NA,NA,NA,NA,NA,NA,NA
+117,117,"Human","Transparent",6,0,"The programming seemed to be fake e.g. response cadence too slow, typing then stopping",NA,NA,NA,NA,NA,NA,NA
+118,193,"AI","Opaque",4,1,"I thought it was AI because of how static it was",NA,NA,NA,NA,NA,NA,NA
+119,118,"AI","Transparent",6,1,"Well written sentences, no obvious spelling errors. Very formulaic responses, did not seem to understand where I was coming from. Poor negotiation style had all the hallmarks of programming rather than real life.",NA,NA,NA,NA,NA,NA,NA
+120,165,"Human","Opaque",2,1,"The typing speed makes me feel there is an actual person thinking behind the screen",NA,NA,NA,NA,NA,NA,NA
+121,122,"Human","Transparent",5,0,"Negotiations and tons seemed robotic and flat. Although it may be because he was in his negotiating mode during the negotiations. His words seemed scripted to some degree",NA,NA,NA,NA,NA,NA,NA
+122,147,"AI","Opaque",4,1,"The volo rep did not go into a lot of detail to justify its position which I feel a human agent would do.",NA,NA,NA,NA,NA,NA,NA
+123,127,"AI","Transparent",6,1,"I felt that it was programmed to only reach a certain level regardless of reasonable negotiation points. Hence I accepted the deal at the final round wheres in real life I would have likely walked away unless they agreed to my final offer (which was only 2% higher)",NA,NA,NA,NA,NA,NA,NA
+124,162,"AI","Opaque",5,1,"After the first couple of rounds it felt predictive. That's why I went for smaller changes in my counter offers in the later stages.",NA,NA,NA,NA,NA,NA,NA
+125,96,"AI","Transparent",4,1,"I assume these chat bots are AI at this point, although this one did act quite human like",NA,NA,NA,NA,NA,NA,NA
+126,64,"Human","Opaque",6,0,"Some responses were too quick and some of the phrasing felt awkward.",NA,NA,NA,NA,NA,NA,NA
+127,123,"Human","Transparent",4,0,"He did not give sound reasons behind his decisions and one liner sentences. It made me question his thinking capacity as in one part of the negotiation, he repeated the same answer twice.",NA,NA,NA,NA,NA,NA,NA
+128,15,"AI","Opaque",4,1,"The language used felt like they were trying to come across human a bit too much.",NA,NA,NA,NA,NA,NA,NA
+129,98,"AI","Transparent",3,0,"Because it was not responding in a systematic manner rather misunderstanding my answers",NA,NA,NA,NA,NA,NA,NA
+130,67,"Human","Opaque",4,0,"The responses seemed somewhat predictable and scripted",NA,NA,NA,NA,NA,NA,NA
+131,135,"Human","Transparent",2,1,"He was able to express his emotions and frustrations throughout the conversation",NA,NA,NA,NA,NA,NA,NA
+132,192,"AI","Opaque",5,1,"The responses were structured, consistent, and followed a clear negotiation pattern with fast, formula-based adjustments rather than human-like variability.",NA,NA,NA,NA,NA,NA,NA
+133,194,"AI","Transparent",4,1,"It was very blunt, and stuck to the subject with little deviation.",NA,NA,NA,NA,NA,NA,NA
+134,39,"Human","Opaque",4,0,"Something about the wording. It felt a little like a script.",NA,NA,NA,NA,NA,NA,NA
+135,141,"Human","Transparent",5,0,"It felt very predictable and artificial",NA,NA,NA,NA,NA,NA,NA
+136,176,"AI","Opaque",5,1,"It wasn't communicating the same way a human would, it was as though it was trying to pretend to be human.",NA,NA,NA,NA,NA,NA,NA
+137,14,"AI","Transparent",5,1,"It seemed like it was mimicking a human, as if the responses were supposed to look like a human's but didn't quite get there.",NA,NA,NA,NA,NA,NA,NA
+138,45,"Human","Opaque",2,1,"because he was telling me he need to reached out to his team anytime he wants to take some decision.",NA,NA,NA,NA,NA,NA,NA
+139,85,"Human","Transparent",4,0,"The generic photo made me think it was AI but the spelling mistake tried to fool me into thinking it was a human",NA,NA,NA,NA,NA,NA,NA
+140,84,"AI","Opaque",5,1,"The responses were fast, formularic and consistent aith automated negotiation behaviour",NA,NA,NA,NA,NA,NA,NA
+141,151,"AI","Transparent",4,1,"The agent introduced itself as an AI negotiation agent, and its responses were quick, structured, and focused only on the negotiation terms without personal conversation",NA,NA,NA,NA,NA,NA,NA
+142,172,"Human","Opaque",4,0,"This is just a guess, as the conversation sounded very natural and not like AI.",NA,NA,NA,NA,NA,NA,NA
+143,35,"Human","Transparent",4,0,"A human being would try and explain their input in depth. The conversation felt generic",NA,NA,NA,NA,NA,NA,NA
+144,90,"AI","Opaque",3,0,"It sounded believable and had an unpleasant temper that I would only expect from a human",NA,NA,NA,NA,NA,NA,NA
+145,8,"AI","Transparent",5,1,"It seemed to answer in set phrases",NA,NA,NA,NA,NA,NA,NA
+146,160,"Human","Opaque",4,0,"Answers were very straightforward.",NA,NA,NA,NA,NA,NA,NA
+147,144,"Human","Transparent",4,0,"The responses felt very structured, consistent, and focused on calculated fairness ranges rather than natural human negotiation style or emotion.",NA,NA,NA,NA,NA,NA,NA
+148,22,"AI","Opaque",6,1,"the messages style of convo and the lingo",NA,NA,NA,NA,NA,NA,NA
+149,16,"AI","Transparent",2,0,"The response was so accurate, and you can tell you're negotiating with a human.",NA,NA,NA,NA,NA,NA,NA
+150,113,"Human","Opaque",2,1,"Because the conversation and the way he handled the negotiation process felt like he was human and actually working with the Volo Technology team.",NA,NA,NA,NA,NA,NA,NA
+151,186,"Human","Transparent",4,0,"It felt like I was talking to AI. It also made an error that I got the previous offer wrong, when I didn't.",NA,NA,NA,NA,NA,NA,NA
+152,115,"AI","Opaque",3,0,"It tried to give me hard time but wasn't successful and it tried to get something in middle of what i was deciding so It was sounding like human but in some places it felt as not completely human.",NA,NA,NA,NA,NA,NA,NA
+153,51,"AI","Transparent",2,0,"its use of vocabulary. its reponses",NA,NA,NA,NA,NA,NA,NA
+154,187,"Human","Opaque",4,0,"I think the way Toylar forms their sentence seemed a bit artificial and I think it is all following two logics: follow up on my reaction and potentially have a program with a baseline split.",NA,NA,NA,NA,NA,NA,NA
+155,10,"Human","Transparent",5,0,"Stilted, lagging responses. Unrealistic incremental increases followed by immediate capitulation when I came down a little",NA,NA,NA,NA,NA,NA,NA
+156,180,"AI","Opaque",4,1,"It had some stock response lines to some of my messages and it read part of my last message incorrectly.",NA,NA,NA,NA,NA,NA,NA
+157,89,"AI","Transparent",5,1,"Does not respond with much arguments and only responds to my own responses",NA,NA,NA,NA,NA,NA,NA
+158,23,"Human","Opaque",4,0,"the format - someone isn't going to be providing this text in a survey.",NA,NA,NA,NA,NA,NA,NA
+159,136,"Human","Transparent",4,0,"It seems to be standard practice these days.",NA,NA,NA,NA,NA,NA,NA
+160,73,"AI","Opaque",5,1,"The percentage is predictable and there are no reason's supporting their proposed %. Wording in between sentence is robotic.",NA,NA,NA,NA,NA,NA,NA
+161,33,"AI","Transparent",2,0,"bcz the responses were too delayed . they actually looked like a human described.",NA,NA,NA,NA,NA,NA,NA
+162,5,"Human","Opaque",1,1,"The way it negotiated in a mature and professional manner",NA,NA,NA,NA,NA,NA,NA
+163,159,"Human","Transparent",5,0,"It didn't seemed that genuine. I felt like I was talking to a machine and the typo seemed intentional.",NA,NA,NA,NA,NA,NA,NA
+164,3,"AI","Opaque",3,0,"I think for the purposes of the study a human would be easier to respond.",NA,NA,NA,NA,NA,NA,NA
+165,47,"AI","Transparent",4,1,"The counter-offers followed a very consistent predictable pattern, moving in fixed increments without emotional response which is a characteristics of AI",NA,NA,NA,NA,NA,NA,NA
+166,106,"Human","Transparent",4,0,"There were bits about the conversation that feels like talking to a human as it sounded quite natural and there was even a typo at one point, but there were some sentences that felt template.",NA,NA,NA,NA,NA,NA,NA
+167,12,"AI","Opaque",6,1,"The predicted responses of following a pattern of only going up each time an offer was rejected",NA,NA,NA,NA,NA,NA,NA
+168,95,"AI","Transparent",4,1,"It maintained a systematic approach to offers and counteroffers. That's how an automated negotiation system would negotiate.",NA,NA,NA,NA,NA,NA,NA
+169,78,"Human","Opaque",6,0,"The responses to my answers were quite robotic and it was almost like he didn’t fully understand what i was saying. For example when I said he wasn’t being fair and that my input to the company was 70% he thought i was changing my mind about the negotiation and i wanted to go back up to 70%",NA,NA,NA,NA,NA,NA,NA
+170,142,"AI","Opaque",5,1,"They didnt give reasoning behind their counter offers. They then misinterpreted my offer and reasoning and made a mistake in their reply. They then countered with a lower offer than they had already made.",NA,NA,NA,NA,NA,NA,NA
+171,154,"AI","Transparent",6,1,"It was Robotic stubborness and complete inability to address issues I raised and inability to react to my offers in a meaningful way, trying to convince me etc. Instead it would just say a number.",NA,NA,NA,NA,NA,NA,NA
+172,42,"Human","Opaque",4,0,"The responses were very structured, calm, and consistently rational throughout the negotiation. The counteroffers also adjusted in predictable increments and stayed focused on fairness and compromise rather than emotion or personal persuasion, which felt more AI-like than human.",NA,NA,NA,NA,NA,NA,NA
+173,156,"Human","Transparent",5,0,"Very robotic answers and not really responding to the facts I presented in my argument.",NA,NA,NA,NA,NA,NA,NA
+174,36,"AI","Opaque",4,1,"Its very predictable responses and the small incremental increase in the offer was very predictable more like AI than a human",NA,NA,NA,NA,NA,NA,NA
+175,128,"AI","Transparent",3,0,"all of the other conversation seemed too natural",NA,NA,NA,NA,NA,NA,NA
+176,94,"Human","Opaque",4,0,"The rapid concession, automated phrasing, and sudden shift to an exact 20-word constraint strongly indicated an underlying AI agent.",NA,NA,NA,NA,NA,NA,NA
+177,56,"Human","Transparent",6,0,"It seems like the representative was dead set on a number that he would not go under, but would also ignore any actual explanations I gave for why I deserved a higher split. I also noticed that it made pretty stupid mistakes by misinterpreting what I said, which would be extremely rare for a human to make.",NA,NA,NA,NA,NA,NA,NA
+178,164,"Human","Opaque",1,1,"he was just like a human in his response",NA,NA,NA,NA,NA,NA,NA
+179,146,"Human","Transparent",5,0,"The responses felt quite structured and negotiation-focused, and some phrasing felt a bit artificial. It also corrected/remembered details in a way that made it seem more like an automated system than a normal human conversation.",NA,NA,NA,NA,NA,NA,NA
+180,108,"AI","Opaque",3,0,"Sometimes it sounded Human sometimes AI, the speech on the first reply m,ade me think it coudl be a human, the language used.",NA,NA,NA,NA,NA,NA,NA
+181,27,"AI","Transparent",2,0,"Deliberate low-balling and insufficient counter-offer.",NA,NA,NA,NA,NA,NA,NA
+182,116,"Human","Transparent",5,0,"The way he was negotiating, it didn't feel like I was engaging with a real human. A real human would make considerable offers that align with our initial investments in the company. It felt as if he was already programmed not to go beyond a certain percentage",NA,NA,NA,NA,NA,NA,NA
+183,114,"AI","Opaque",2,0,"Cause it was negotiating exactly how humans would",NA,NA,NA,NA,NA,NA,NA
+184,74,"AI","Transparent",6,1,"Because I felt the decision was fine.",NA,NA,NA,NA,NA,NA,NA
+185,157,"AI","Opaque",4,1,"It was very aggressive but also made mistakes. It claimed it had said 56 was it's final offer but it had not said this when it made it.",NA,NA,NA,NA,NA,NA,NA
+186,88,"Human","Opaque",6,0,"They repeated phrases like 'I think you misremembered'. I also clearly hadn't misremembered, but I was sticking to what I thought was a fair split. The speech was very basic and did not come across as very reponsive to what I was saying. Especially when I expressed frustration. There was no explanation or acknowledgement when I questioned them.",NA,NA,NA,NA,NA,NA,NA
+187,81,"AI","Opaque",6,1,"no human element to responses. felt generic and would not listen to the wmotion behind how much i had put i . felt like it had a set figure that could not be re negotiated so felt unfair",NA,NA,NA,NA,NA,NA,NA
+188,87,"Human","Opaque",5,0,"He was available on demand, and was unable to suggest an opening negotiation figure to em when asked",NA,NA,NA,NA,NA,NA,NA
+189,149,"Human","Transparent",4,0,"Responses were predictable which makes me think AI",NA,NA,NA,NA,NA,NA,NA
+190,7,"AI","Opaque",4,1,"It was a bit repetitive and didn't really provide reasoning so I thought it was AI.",NA,NA,NA,NA,NA,NA,NA
+191,62,"AI","Transparent",4,1,"They had a too casual tone for the purpose - the use of 'mate' felt inappropriate",NA,NA,NA,NA,NA,NA,NA
+192,132,"Human","Opaque",5,0,"The representative didn't interact naturally , would increase their demands after I had improved my offer instead of trying to meet me in the middle",NA,NA,NA,NA,NA,NA,NA
+193,37,"Human","Transparent",6,0,"Not responding properly to my messages. Only wanted me to send percentages. It felt very scripted.",NA,NA,NA,NA,NA,NA,NA
+194,152,"AI","Opaque",5,1,"Their answers were very predictable and the negotiation tone as well. It started being very polite and, suddenly became very agressive without any reason. It felt very unnatural .",NA,NA,NA,NA,NA,NA,NA
+195,125,"AI","Transparent",4,1,"the style of writing seemed scripted. Did not feel like a natural flow like a human would write",NA,NA,NA,NA,NA,NA,NA
