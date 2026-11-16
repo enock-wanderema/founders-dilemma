@@ -1,0 +1,80 @@
+{{ block title }}Information sheet and consent{{ endblock }}
+{{ block content }}
+<div class="card mb-4">
+    <div class="card-body">
+        <p class="text-muted text-center">London School of Economics and Political Science<br>
+        Department of Psychological and Behavioural Science</p>
+
+        <h4 class="text-center mb-4">Participant Information Sheet</h4>
+
+        <p><strong>Study Title:</strong> Decision-Making in Online Negotiations<br>
+        <strong>Researcher:</strong> Enock Wanderema, MSc Behavioural Science<br>
+        <strong>Supervisor:</strong> Dr Dario Krpan, Department of Psychological and Behavioural Science</p>
+
+        <div class="alert alert-warning">
+        <h6>NOTE:</h6><p>Before you decide whether to participate, it is important that you understand why the research is being conducted and what it will involve. Please read the following information carefully.</p>
+        </div>
+
+        <h6>Purpose of the study</h6>
+        <p>This study investigates how people make decisions and behave in online negotiations.</p>
+
+        <h6>Why you?</h6>
+        {{ if is_prolific }}
+        <p>You have been invited because you are a Prolific participant aged 18–65, based in the United Kingdom, and fluent in English. We are recruiting approximately 150–200 participants for this study.</p>
+        {{ elif is_volunteer }}
+        <p>You have been invited to help pilot this study before it is launched to a wider participant pool.</p>
+        {{ else }}
+        <p>You have been invited because you are aged 18–65 and fluent in English.</p>
+        {{ endif }}
+
+        <h6>Participation terms</h6>
+        <p>Participation is entirely voluntary. You are free to withdraw at any time without giving a reason and without any consequences.</p>
+
+        <h6>What you will do</h6>
+        <p>The study has four short parts:</p>
+        <ol>
+            <li>Read a brief scenario about a business negotiation between two parties (2 minutes)</li>
+            <li>Answer a few questions about your expectations before the negotiation (2 minutes)</li>
+            <li>Negotiate an equity split with a partner via a real-time text chat interface (5–7 minutes)</li>
+            <li>Complete a short post-negotiation survey about your experience (3 minutes)</li>
+        </ol>
+        <p>Estimated total duration: 12–15 minutes.</p>
+
+        {{ if is_prolific }}
+        <h6>Payment</h6>
+        <p>You will receive a base payment in line with Prolific's recommended rate for a study of this duration, plus a performance bonus of up to <strong>£{{ max_bonus }}</strong> based on your negotiation outcome. The base payment is guaranteed regardless of outcome.</p>
+        {{ elif not is_volunteer }}
+        <h6>Compensation</h6>
+        <p>As a thank you for your participation, you will receive a reward after the study, arranged through the research coordinator. No payment details are collected within the study.</p>
+        {{ endif }}
+
+        <h6>Any risks?</h6>
+        <p>This study presents no risks beyond those encountered in everyday life. The negotiation scenario is fictional and involves no real business decisions.</p>
+
+        <h6>Handling of data collected</h6>
+        {{ if is_prolific }}
+        <p>Your Prolific ID is collected solely for payment processing and will be deleted once payments are confirmed. No other personally identifiable information is collected.</p>
+        {{ else }}
+        <p>No personally identifiable information is collected within this study.</p>
+        {{ endif }}
+        <p>All data will be fully anonymised before analysis and stored securely on LSE OneDrive in accordance with GDPR. Anonymised data may be used in the researcher's MSc dissertation and subsequent academic publications. No individual participant will be identifiable in any output.</p>
+
+        {{ if not is_volunteer }}
+        <h6>After the study</h6>
+        <p>You will receive a full explanation of the research, including its purpose and design. At that point, you will be given the opportunity to decide whether you wish your data to be included in the analysis.</p>
+        {{ endif }}
+
+        <h6>Contact</h6>
+        <p><strong>Researcher:</strong> Enock Wanderema: e.wanderema@lse.ac.uk<br>
+        <strong>Supervisor:</strong> Dr Dario Krpan: d.krpan@lse.ac.uk<br>
+         {{ if not is_volunteer }}
+        <strong>Ethics:</strong> LSE Research Ethics Committee: research.ethics@lse.ac.uk (Reference: 725123)</p>
+        {{ endif }}
+    </div>
+</div>
+<div class="alert alert-warning">
+    <strong>Please confirm your participation:</strong> If you do not agree, the study will end immediately.
+</div>
+{{ formfield 'consent' }}
+{{ next_button }}
+{{ endblock }}

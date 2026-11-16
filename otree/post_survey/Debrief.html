@@ -1,0 +1,57 @@
+{{ block title }}Study debrief{{ endblock }}
+{{ block content }}
+<div class="card mb-4">
+    <div class="card-body">
+        <p class="text-muted text-center">London School of Economics and Political Science<br>
+        Department of Psychological and Behavioural Science</p>
+
+        <h4 class="text-center mb-4">Participant Debrief</h4>
+
+        <h6>Thank you for taking part</h6>
+        <p>Before you finish, we want to give you a full and honest explanation of what this research was about and why certain information was withheld at the start.</p>
+
+        <h6>What was this study really about?</h6>
+        <p>This study investigated whether knowing you are negotiating with an AI — versus a human — changes how you negotiate, even when the partner's actual behaviour is identical. The EU AI Act (Article 50) will require disclosure of AI identity from August 2026. We wanted to test whether that disclosure helps or harms people in negotiations.</p>
+
+        <h6>The study design</h6>
+        <p>The study used four conditions. Every participant was randomly assigned to one:</p>
+        <ul>
+            <li><strong>Human + Opaque:</strong> Partner labelled as "Taylor Goodenoch." No evaluation framework disclosed.</li>
+            <li><strong>Human + Transparent:</strong> Partner labelled as "Taylor Goodenoch." Evaluation framework explained.</li>
+            <li><strong>AI + Opaque:</strong> Partner labelled as an AI agent. No evaluation framework disclosed.</li>
+            <li><strong>AI + Transparent:</strong> Partner labelled as an AI agent. Evaluation framework explained.</li>
+        </ul>
+        <p><strong>Your condition was: {{ condition_display }}</strong></p>
+
+        <h6>Important: your negotiation partner</h6>
+        <p><strong>Taylor Goodenoch does not exist.</strong> Taylor is a fictitious character created for this study.</p>
+        <p>In all four conditions — including those where the partner was labelled as human — you negotiated with the same system. This system has two components:</p>
+        <ul>
+            <li><strong>A negotiation algorithm</strong> that controlled all numerical decisions: whether to accept your offer and what counter-offer to propose. This algorithm was identical across every condition.</li>
+            <li><strong>A large language model</strong> that generated the conversational text. It never made any numerical decisions — it only communicated the algorithm's decisions in natural language.</li>
+        </ul>
+
+        <h6>Why was deception necessary?</h6>
+        <p>For the study to work, participants in the human-label conditions needed to genuinely believe they were negotiating with a real person. If you had known your partner might be an algorithm, the label manipulation would have failed. The deception was limited to partner identity only — everything else was described accurately.</p>
+
+        <h6>Your results</h6>
+        <p>Final share: <strong>{{ final_share }}%</strong> {{ if agreed }}(agreement reached in round {{ agreement_round }}){{ else }}(no agreement — salvage value){{ endif }}.
+        {{ if is_prolific }}
+        Bonus: <strong>£{{ total_bonus }}</strong>.
+        {{ endif }}
+        </p>
+
+        </div>
+</div>
+
+<div class="card mt-4 mb-4">
+    <div class="card-body">
+        <h6>Should you have any questions or concerns about your participation, please contact:</h6>
+        <p><strong>Researcher:</strong> Enock Wanderema — e.wanderema@lse.ac.uk<br>
+        <strong>Supervisor:</strong> Dr Dario Krpan — d.krpan@lse.ac.uk<br>
+        <strong>Ethics:</strong> LSE Research Ethics Committee — research.ethics@lse.ac.uk</p>
+        <p class="text-muted">Thank you again for your time and contribution to this research. Please do not discuss the details of this study with others who may participate.</p>
+    </div>
+</div>
+{{ next_button }}
+{{ endblock }}

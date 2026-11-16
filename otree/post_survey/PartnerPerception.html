@@ -1,0 +1,25 @@
+{{ block title }}About the representative{{ endblock }}
+{{ block content }}
+<p>Thinking about <strong>{{ partner }}</strong> during the negotiation, please indicate how much you agree with each statement.</p>
+
+<h6>Competence</h6>
+{{ formfield 'comp_1' }}{{ formfield 'comp_2' }}{{ formfield 'comp_3' }}
+
+<h6 class="mt-4">Predictability</h6>
+{{ formfield 'pred_1' }}{{ formfield 'pred_2' }}
+
+<h6 class="mt-4">Benevolence</h6>
+{{ formfield 'ben_1' }}{{ formfield 'ben_2' }}{{ formfield 'ben_3' }}
+
+<h6 class="mt-4">Overall Trust</h6>
+<p class="text-muted">1 = No trust at all, 7 = Complete trust</p>
+{{ formfield 'overall_trust' }}
+
+<h6 class="mt-4">How did {{ partner }} come across?</h6>
+<p class="text-muted">Rate on each scale.</p>
+{{ formfield 'godspeed_natural' }}
+{{ formfield 'godspeed_humanlike' }}
+{{ formfield 'godspeed_lifelike' }}
+
+{{ next_button }}
+{{ endblock }}

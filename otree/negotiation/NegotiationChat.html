@@ -1,0 +1,951 @@
+{{ block title }}Negotiation{{ endblock }}
+{{ block styles }}<link rel="stylesheet" href="{{ static 'global/chat.css' }}">{{ endblock }}
+{{ block content }}
+<!--
+NEGOTIATION CHAT — Single Page Live Interface
+
+PURPOSE: This is the chat interface where the entire negotiation happens.
+         All 5 rounds occur on this one page via WebSocket (oTree live_method).
+
+HOW IT WORKS:
+  1. Page loads > Taylor/AI introduces themselves (animated line by line)
+  2. Participant types freely > raw text sent to server; the LLM intent layer resolves the demand (accept/reject via buttons)
+  3. Data sent to server > Python bot_evaluate runs > LLM generates response text
+  4. Response animated in chat > cycle repeats for up to 5 rounds
+  5. After negotiation: partner goes offline > trust poll > redirect
+
+HUMAN vs AI DIFFERENCES (all in this file):
+  - Human: typing dots animation, Delivered/Seen status, line-by-line messages
+  - AI: "Processing..." indicator, no status, all lines as single block
+  - Human: time-of-day greeting ("good morning!")
+  - AI: no greeting modification
+  - Human: Taylor's photo from header used in all avatars
+  - AI: "AI" text avatar
+
+FREE TEXT INPUT:
+  Participants type naturally.
+  - Demands: raw text is sent to the server, where the LLM intent layer
+    resolves the number (see infer_intent in __init__.py). No JS parsing of demands.
+  - Accept/Reject: emoji buttons (thumbs up/down) for zero parse error
+  - Ambiguous input: the server asks Taylor/AI to clarify naturally
+  (JS number parsing is used only for the fair-split answer, not the demand.)
+
+NO ROUND DIVIDERS:
+  The chat flows like a real conversation. No "ROUND 2 OF 5" banners.
+  Round tracking happens in the code but is invisible to participants.
+-->
+
+<!-- 
+     CHAT CONTAINER — WhatsApp-style layout
+     Header: partner name + status (online/typing/offline)
+     Body: scrollable message area
+     Input: text field + send button
+     Countdown: shown after trust rating, auto-submits page
+    -->
+<div class="chat-wrapper" id="chat-wrapper">
+    <div class="chat-header">
+        {{ if is_human }}
+        <!-- Human condition: Taylor's photo -->
+        <div class="chat-header-avatar"><img src="{{ static 'global/taylor.jpg' }}" alt="TG"></div>
+        {{ else }}
+        <!-- AI condition: text avatar -->
+        <div class="chat-header-avatar ai">AI</div>
+        {{ endif }}
+        <div class="chat-header-info">
+            <div class="chat-header-name">{{ partner_full }}</div>
+            <div class="chat-header-status" id="header-status">online</div>
+        </div>
+    </div>
+    <div class="chat-body" id="chat-body">
+        <div id="messages"></div>
+        <div id="typing-area"></div>
+    </div>
+    <div class="chat-input-bar" id="input-bar" style="display:none;">
+        <input type="text" id="chat-input" class="chat-input"
+               placeholder="Type your response..." autocomplete="off">
+        <button type="button" id="send-btn" class="send-btn">➤</button>
+    </div>
+    <div class="countdown-bar" id="countdown-bar" style="display:none;">
+        Redirecting in <span id="countdown-num">5</span> seconds...
+    </div>
+</div>
+
+<!-- Hidden form for oTree page submission (triggered by countdown) -->
+<div style="display:none;"><form id="otree-form">{{ next_button }}</form></div>
+
+<script>
+
+// POLYFILLS — for older browsers some Prolific participants might use
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(s) { return this.indexOf(s) === 0; };
+}
+if (!NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
+// GLOBAL VARIABLES
+var isHuman, opening, greeting, DEMAND_MIN, DEMAND_MAX, MAX_ROUNDS, currentRound, waitingFor;
+var chatBody, messages, typingArea, inputBar, chatInput, sendBtn, headerStatus;
+var isFirstMessage = true;         // used for AI "Initializing..." vs "Processing..."
+var taylorImg = '';                 // Taylor's photo URL, set from header on load
+var chatMessages = [];
+var pendingSplit = null;  // {a: int, b: int} when bot has just asked which of two split numbers is theirs             // full chat history for reconnection and analysis
+var pendingDemand = null;          // demand extracted from combined reject+number message
+
+// Track messages for reconnection and qualitative analysis
+function trackMsg(sender, text) { chatMessages.push({sender: sender, text: text}); }
+
+
+// LIVE RECV — handles all responses from the Python server
+// This is called automatically by oTree when the server sends data back.
+// Each response type triggers different chat behavior.
+function liveRecv(data) {
+    var silenceDur = data.silence ? (data.silence_duration * 1000) : 0;  // convert seconds to ms
+
+    if (data.type === 'greeting_done') {
+        // Taylor/AI reacted to greeting, transitioned to business, asked for number
+        animateLines(data.lines, function() {
+            waitingFor = 'demand';                     // now expecting a percentage
+            showInput('Type your response...');
+        });
+
+    } else if (data.type === 'accepted') {
+        // Algorithm accepted their demand outright
+        doSilenceThenAnimate(silenceDur, data.lines, function() {
+            addSystemMsg('Deal reached — you get ' + data.share + '% (' + data.dollar + ')');
+            setTimeout(function() {
+                animateLines(data.closing, function() { startWindDown(); });  // closing then wind-down
+            }, 1000);
+        });
+
+    } else if (data.type === 'rejected') {
+        // Algorithm rejected, counter-offer delivered by LLM
+        if (data.pre_lines && data.pre_lines.length > 0) {
+            // Round 1 or final: bot says "lemme check" → pause → delivers counter
+            animateLines(data.pre_lines, function() {
+                // Status indicator during consult pause: persona-appropriate phrasing
+                var consultMs = (data.consult_pause || 10) * 1000;
+                headerStatus.textContent = 'on hold';
+                setTimeout(function() {
+                    headerStatus.textContent = 'online';
+                    var _shouldAfter = (
+                        isHuman &&
+                        AFTERTHOUGHT_ROUNDS.indexOf(currentRound) !== -1 &&
+                        data.lines && data.lines.length >= 2
+                    );
+                    var _split = _shouldAfter ? splitAfterthought(data.lines) : {main: data.lines, after: null};
+                    animateLines(_split.main, function() {
+                        if (_split.after) {
+                            // Afterthought: wait, type, deliver — THEN show buttons
+                            setTimeout(function() {
+                                simulateTyping(_split.after, function() {
+                                    addPartnerMsg(_split.after);
+                                    waitingFor = 'counter_response';
+                                    showEmojiChoice();
+                                });
+                            }, 4000 + Math.random() * 4000);
+                        } else {
+                            // No afterthought: show buttons immediately
+                            waitingFor = 'counter_response';
+                            showEmojiChoice();
+                        }
+                    });
+                }, consultMs);
+            });
+        } else {
+            // Middle rounds: normal flow with optional random silence + afterthought wrap
+            var _shouldAfter = (
+                isHuman &&
+                AFTERTHOUGHT_ROUNDS.indexOf(currentRound) !== -1 &&
+                data.lines && data.lines.length >= 2
+            );
+            var _split = _shouldAfter ? splitAfterthought(data.lines) : {main: data.lines, after: null};
+            doSilenceThenAnimate(silenceDur, _split.main, function() {
+                if (_split.after) {
+                    // Afterthought: wait, type, deliver — THEN show buttons
+                    setTimeout(function() {
+                        simulateTyping(_split.after, function() {
+                            addPartnerMsg(_split.after);
+                            waitingFor = 'counter_response';
+                            showEmojiChoice();
+                        });
+                    }, 4000 + Math.random() * 4000);
+                } else {
+                    // No afterthought: show buttons immediately
+                    waitingFor = 'counter_response';
+                    showEmojiChoice();
+                }
+            });
+        }
+
+    } else if (data.type === 'counter_accepted') {
+        // Participant accepted the counter-offer (tapped thumbs up)
+        addSystemMsg('Deal reached — you get ' + data.share + '% (' + data.dollar + ')');
+        setTimeout(function() {
+            animateLines(data.closing, function() { startWindDown(); });
+        }, 1000);
+
+    } else if (data.type === 'disagreement') {
+        // Final round rejection — no deal
+        animateLines(data.closing, function() {
+            addSystemMsg('No agreement — both get 25%');
+            setTimeout(function() { startWindDown(); }, 1500);
+        });
+
+    } else if (data.type === 'next_round') {
+        // Participant rejected counter, moving to next round
+        currentRound = data.round;
+        var autoDemand = data.pending_demand || pendingDemand;  // demand from combined reject+number
+        pendingDemand = null;
+        if (autoDemand) {
+            // They already typed a number with their rejection — skip asking again
+            waitingFor = 'bot_response';
+            liveSend({type: 'demand', round: currentRound, value: autoDemand, messages: chatMessages, raw_text: 'auto:' + autoDemand});
+        } else {
+            animateLines(data.lines, function() {
+                waitingFor = 'demand';                 // ask for their next number
+                showInput('Type your response...');
+            });
+        }
+
+    } else if (data.type === 'winddown_lines') {
+        // LLM-generated "what do you think is actually fair?" question
+        animateLines(data.lines, function() {
+            waitingFor = 'chat_fair_split';             // now expecting a fair percentage
+            showInput('Type a number...');
+        });
+
+    } else if (data.type === 'goodbye') {
+        // LLM-generated farewell after fair split reaction
+        animateLines(data.lines, function() {
+            goOfflineAndAskTrust();                     // partner goes offline, trust poll appears
+        });
+
+    } else if (data.type === 'done') {
+        // Trust rating submitted — redirect to next app
+        addSystemMsg('Redirecting...');
+        startCountdown();
+
+    } else if (data.type === 'clarify') {
+        // Taylor/AI asking for clarification on an ambiguous demand
+        // (e.g. "not less than 60" or "between 55 and 70")
+        animateLines(data.lines, function() {
+            waitingFor = 'demand';                     // let them try again
+            showInput('Type your response...');
+        });
+
+    } else if (data.type === 'clarify_fair') {
+        // Taylor/AI asking for clarification on ambiguous fair split answer
+        animateLines(data.lines, function() {
+            waitingFor = 'chat_fair_split';
+            showInput('Type a number...');
+        });
+    }
+}
+
+
+// SILENCE MECHANIC
+// PURPOSE: 30% chance per round of dead air before bot responds.
+//          Creates psychological pressure. Mimics real negotiation pauses.
+// HOW: "online" status stays but nothing happens for 5-15 seconds.
+//      For human condition + long silence: Taylor apologizes after.
+function doSilenceThenAnimate(silenceDuration, lines, callback) {
+    // Mark the participant's last message as "Seen" — read-pause scaled by message length.
+    // Humans read longer messages for longer. Fixed delay reads as automation.
+    var allPending = document.querySelectorAll('.msg-status:not(.seen)');
+    if (allPending.length > 0) {
+        var lastYouBubble = document.querySelector('.msg-you:last-of-type .bubble');
+        var lastYouLen = lastYouBubble ? lastYouBubble.textContent.length : 0;
+        var readDelay = 1500 + Math.random() * 1500 + Math.min(lastYouLen * 25, 2500); // 1.5-3s + up to 2.5s for length
+        setTimeout(function() {
+            allPending.forEach(function(el, idx) {
+                setTimeout(function() { markSeen(el.id); }, idx * 1200);
+            });
+        }, readDelay);
+    }
+
+    if (silenceDuration > 0) {
+        // Dead air — status stays "online" but nothing happens
+        headerStatus.textContent = 'online';
+        setTimeout(function() {
+            if (silenceDuration > 6000) {
+                // Long silence: brief typing indicator before responding
+                showTyping();
+                setTimeout(function() {
+                    hideTyping();
+                    animateLines(lines, callback);
+                }, 2000 + Math.random() * 1500);
+            } else {
+                animateLines(lines, callback);
+            }
+        }, silenceDuration);
+    } else {
+        animateLines(lines, callback);
+    }
+}
+
+
+// DOM HELPERS — functions to add messages, status, and system notifications
+function scroll() { chatBody.scrollTop = chatBody.scrollHeight; }
+
+// Add a message from the bot (Taylor or AI)
+function addPartnerMsg(text) {
+    var div = document.createElement('div');
+    div.className = 'msg-partner';
+    var avatarHTML = isHuman
+        ? '<img src="' + taylorImg + '" style="width:100%;height:100%;object-fit:cover;">'
+        : 'AI';
+    div.innerHTML =
+        '<div class="avatar-small' + (isHuman ? '' : ' ai') + '">' + avatarHTML + '</div>' +
+        '<div class="bubble">' + text + '</div>';
+    messages.appendChild(div);
+    scroll();
+    trackMsg('partner', text);
+}
+
+// Add a message from the participant (right-aligned, dark bubble)
+function addYouMsg(text) {
+    trackMsg('you', text);
+    var div = document.createElement('div');
+    div.className = 'msg-you';
+    div.innerHTML = '<div class="bubble">' + text + '</div>';
+    messages.appendChild(div);
+    // Human condition: show Delivered status
+    if (isHuman) {
+        var status = document.createElement('div');
+        status.className = 'msg-status';
+        status.id = 'status-' + Date.now();
+        status.textContent = 'Delivered ✓';
+        messages.appendChild(status);
+        scroll();
+        return status.id;  // Used later to mark as Seen
+    }
+    scroll();
+    return null;
+}
+
+// Change "Delivered" to "Seen" (human condition only)
+function markSeen(statusId) {
+    var el = document.getElementById(statusId);
+    if (el) { el.textContent = 'Seen ✓✓'; el.className = 'msg-status seen'; }
+}
+
+// Add a centered system message (deals, redirects, etc.)
+function addSystemMsg(text) {
+    var div = document.createElement('div');
+    div.className = 'msg-system';
+    div.innerHTML = '<div class="pill">' + text + '</div>';
+    messages.appendChild(div);
+    scroll();
+    trackMsg('system', text);
+}
+
+
+// TYPING INDICATORS
+// HUMAN: animated dots (like WhatsApp), header shows "typing..."
+//        Dynamic duration: short lines = 1.5-3s, long lines = multi-phase
+//        Typo lines appear fast. *Corrections appear after a pause.
+// AI: "Initializing AI agent..." or "AI agent processing..."
+//     No dots. No phases. Just a status message then content appears.
+function showTyping() {
+    if (isHuman) {
+        typingArea.innerHTML =
+            '<div class="typing-row"><div class="avatar-small">' +
+            '<img src="' + taylorImg + '" style="width:100%;height:100%;object-fit:cover;">' +
+            '</div><div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
+        headerStatus.textContent = 'typing...';
+    } else {
+        typingArea.innerHTML =
+            '<div class="typing-row"><div class="avatar-small ai">AI</div>' +
+            '<div class="processing-dot"></div></div>';
+        headerStatus.textContent = 'processing...';
+    }
+    scroll();
+}
+
+function hideTyping() {
+    typingArea.innerHTML = '';
+    headerStatus.textContent = 'online';
+}
+
+// EMOJI ACCEPT/REJECT — bouncing thumbs up/down buttons
+// Zero parse error rate for the critical binary decision.
+// Participant can still type freely for demands and conversation.
+function showEmojiChoice() {
+    hideInput();
+    var container = document.createElement('div');
+    container.className = 'emoji-choice';
+    container.id = 'emoji-choice';
+    container.innerHTML =
+        '<span class="emoji-btn reject-btn" data-choice="reject" title="Reject">👎</span>' +
+        '<span class="emoji-btn accept-btn" data-choice="accept" title="Accept">👍</span>';
+    messages.appendChild(container);
+    scroll();
+
+    container.querySelectorAll('.emoji-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var choice = this.dataset.choice;       // 'accept' or 'reject'
+            var isAccept = (choice === 'accept');
+            var emoji = isAccept ? '👍' : '👎';
+
+            // Show their choice as a message bubble
+            addYouMsg(emoji);
+
+           // The unselected emoji fades out
+            var el = document.getElementById('emoji-choice');
+            var other = el.querySelector('[data-choice="' + (isAccept ? 'reject' : 'accept') + '"]');
+            if (other) {
+                other.className = 'emoji-btn popping';
+                setTimeout(function() { if (el) el.remove(); }, 400);
+            } else {
+                if (el) el.remove();
+            }
+
+            // Send decision to server
+            liveSend({type: 'counter_response', round: currentRound, accepted: isAccept, next_demand: null, messages: chatMessages, raw_text: emoji});
+            waitingFor = 'processing';
+        });
+    });
+}
+
+function showInput(ph) {
+    chatInput.placeholder = ph;    // set placeholder text
+    chatInput.value = '';           // clear any previous input
+    chatInput.disabled = false;
+    sendBtn.disabled = false;
+    inputBar.style.display = 'flex';
+    chatInput.focus();
+    scroll();
+}
+
+function hideInput() { inputBar.style.display = 'none'; }
+
+
+// TYPING ANIMATION — simulates realistic typing speed
+// Short lines (<40 chars): single typing phase, 1.5-3 seconds
+// Medium lines (40-80 chars): 50% chance of multi-phase (type, pause, type)
+// Long lines (80+ chars): 2-4 phases with pauses between
+// Typo lines: appear fast (0.6-1.4s) — person typed quickly and made a mistake
+// *Correction lines: appear after 0.8-2.3s pause — person noticed the typo
+// AI condition: no animation at all, callback fires immediately
+function simulateTyping(text, callback) {
+    // *Corrections: brief pause, no typing indicator
+    if (text.startsWith('*')) {
+        setTimeout(callback, 800 + Math.random() * 1500);
+        return;
+    }
+    // Typo lines: appear fast (typed quickly, made a mistake)
+    var isTypoLine = /sory|chesk|thikn|probaly|resonable|mathing|invester|developement|apprecite|propsal/.test(text);
+    if (isTypoLine) {
+        showTyping();
+        setTimeout(function() { hideTyping(); callback(); }, 600 + Math.random() * 800);
+        return;
+    }
+    // AI: show processing indicator briefly (parallel timing to Taylor's typing)
+    if (!isHuman) {
+        showTyping();
+        setTimeout(function() { hideTyping(); callback(); }, 1500 + Math.random() * 1500);
+        return;
+    }
+
+    var len = text.length;
+    if (len > 80) {
+        // Long line: 2-4 phases of typing with pauses
+        var phases = 2 + Math.floor(Math.random() * 3);
+        var cur = 0;
+        function doPhase() {
+            if (cur >= phases) { hideTyping(); callback(); return; }
+            showTyping();
+            setTimeout(function() {
+                hideTyping();
+                cur++;
+                if (cur < phases) setTimeout(doPhase, 1500 + Math.random() * 1500);
+                else callback();
+            }, 2000 + Math.random() * 2000);
+        }
+        doPhase();
+    } else if (len > 40) {
+        // Medium line: 50% single phase, 50% two phases
+        if (Math.random() > 0.5) {
+            showTyping();
+            setTimeout(function() { hideTyping(); callback(); }, 2000 + Math.random() * 2000);
+        } else {
+            showTyping();
+            setTimeout(function() {
+                hideTyping();
+                setTimeout(function() {
+                    showTyping();
+                    setTimeout(function() { hideTyping(); callback(); }, 1500 + Math.random() * 1500);
+                }, 1000 + Math.random() * 1500);
+            }, 1500 + Math.random() * 1500);
+        }
+    } else {
+        // Short line: single typing phase
+        showTyping();
+        setTimeout(function() { hideTyping(); callback(); }, 1500 + Math.random() * 1500);
+    }
+}
+
+
+// HUMAN RHYTHM HELPERS — for stop-start typing and afterthought tag-on
+// These layer on top of simulateTyping (which already handles length-proportional dots)
+// to add two patterns simulateTyping doesn't already do:
+// (1) guaranteed stop-start on a seeded round — "typed, deleted, retyped"
+// (2) afterthought — sending the last bubble 4-8s after the main batch
+
+// Stop-start typing: type 1-2s, stop, wait 2-3s, restart, then call simulateTyping.
+// Reads as "Taylor started typing, deleted, thought again, kept going."
+function stopStartThenType(text, callback) {
+    showTyping();
+    setTimeout(function() {
+        hideTyping();
+        setTimeout(function() {
+            // now hand off to the existing typing simulator for the real bubble
+            simulateTyping(text, callback);
+        }, 2000 + Math.random() * 1000);                // 2-3s "thinking"
+    }, 1000 + Math.random() * 1000);                    // 1-2s of fake typing
+}
+
+// Afterthought splitter: pull the last line off so it can be sent as a separate bubble
+// 4-8s after the main batch lands. Reads as the "oh and" tag-on text.
+function splitAfterthought(lines) {
+    if (!lines || lines.length < 2) return {main: lines, after: null};
+    return {
+        main: lines.slice(0, -1),
+        after: lines[lines.length - 1]
+    };
+}
+
+
+// LINE-BY-LINE ANIMATION
+// HUMAN: each line appears separately with typing animation + pauses between
+//        First line after user message: waits for Seen, then pauses, then types
+//        *Correction lines: longer pause (noticing the mistake)
+//        Regular lines: 1-2.5s gap between them
+// AI: all lines joined into single block, shown after "Processing..." indicator
+function animateLines(lines, callback) {
+    // Both conditions: line by line with realistic delays
+    var i = 0;
+    var lastStatusId = null;
+    var allPending = document.querySelectorAll('.msg-status:not(.seen)');
+    if (allPending.length > 0) lastStatusId = allPending[allPending.length - 1].id;            // find the last unseen status
+
+    function next() {
+        if (i >= lines.length) { if (callback) callback(); return; }
+        var isCorrection = lines[i].startsWith('*');
+
+        if (i === 0 && lastStatusId) {
+            // First bot line after user message:
+            // 1. Wait 2-4s + length bonus -> mark as Seen (longer msgs take longer to "read")
+            // 2. Wait 3-7s more -> start typing (thinking time)
+            var lastYouBubble = document.querySelector('.msg-you:last-of-type .bubble');
+            var lastYouLen = lastYouBubble ? lastYouBubble.textContent.length : 0;
+            var seenDelay = 2000 + Math.random() * 2000 + Math.min(lastYouLen * 25, 2500);
+            setTimeout(function() {
+                // Mark pending messages as Seen one by one with staggered delay
+                allPending.forEach(function(el, idx) {
+                    setTimeout(function() { markSeen(el.id); }, idx * 1200);
+                });
+                lastStatusId = null;
+                var ticksDelay = (allPending.length - 1) * 1200;
+                var thinkDelay = ticksDelay + 3000 + Math.random() * 4000;
+                setTimeout(typeAndShow, thinkDelay);
+            }, seenDelay);
+        } else if (isCorrection) {
+            // *Correction: longer pause (noticed the typo)
+            setTimeout(typeAndShow, 1500 + Math.random() * 2000);
+        } else if (i === 0) {
+            // First line but no pending seen (e.g. after consult pause): 3-6s thinking delay
+            setTimeout(typeAndShow, 3000 + Math.random() * 3000);
+        } else {
+            // Regular line: 1.5-3.5s gap between bubbles
+            setTimeout(typeAndShow, 1500 + Math.random() * 2000);
+        }
+
+        function typeAndShow() {
+            // On the seeded stop-start round, the FIRST line goes through the stop-start
+            // pattern (typed-deleted-retyped). Once per conversation only.
+            var useStopStart = (
+                i === 0 && isHuman &&
+                currentRound === STOPSTART_ROUND &&
+                !window._stopStartUsed
+            );
+            var typingFn = useStopStart ? stopStartThenType : simulateTyping;
+            if (useStopStart) window._stopStartUsed = true;
+
+            typingFn(lines[i], function() {
+                addPartnerMsg(lines[i]);               // add the bubble
+                i++;
+                next();                                 // move to next line
+            });
+        }
+    }
+    next();
+}
+
+
+// WIND-DOWN — after deal or disagreement, ask what they think is fair
+// Sends to server so the LLM generates the question in character.
+// Taylor asks casually, AI agent asks formally. Both get a number back.
+function startWindDown() {
+    setTimeout(function() {
+        liveSend({type: 'winddown', messages: chatMessages});  // server generates the question
+        waitingFor = 'processing';                              // wait for winddown_lines response
+    }, 1500);
+}
+
+
+// OFFLINE + TRUST POLL
+// After the negotiation ends (deal or disagreement):
+// 1. Wait 2s -> partner goes "offline" (grey status)
+// 2. Wait 1s -> "Taylor has left the chat"
+// 3. Wait 1.5s -> "Before you go, please rate your experience"
+// 4. Show trust poll (1-5, Twitter/X style horizontal options)
+// 5. After selection -> "Redirecting..." -> 5 second countdown -> auto-submit
+function goOfflineAndAskTrust() {
+    setTimeout(function() {
+        headerStatus.textContent = 'offline';
+        headerStatus.style.color = '#ccc';
+        var name = isHuman ? 'Taylor' : "Volo's AI agent";
+        setTimeout(function() {
+            addSystemMsg(name + ' has left the chat');
+            setTimeout(function() {
+                addSystemMsg('Before you go, please rate your experience');
+                showTrustPoll("How much did you trust " + name + " during this negotiation?");
+            }, 1500);
+        }, 1000);
+    }, 2000);
+}
+
+function showTrustPoll(q) {
+    var qDiv = document.createElement('div');
+    qDiv.className = 'msg-system';
+    qDiv.innerHTML = '<div class="pill" style="font-weight:600;padding:8px 16px;">' + q + '</div>';
+    messages.appendChild(qDiv);
+    var poll = document.createElement('div');
+    poll.className = 'poll-container';
+    var labels = ['Not at all','Slightly','Somewhat','Quite a bit','Completely'];
+    for (var j = 1; j <= 5; j++) {
+        var opt = document.createElement('div');
+        opt.className = 'poll-option';
+        opt.dataset.value = j;
+        opt.innerHTML = '<span class="poll-num">' + j + '</span><span class="poll-label">' + labels[j-1] + '</span>';
+        opt.addEventListener('click', handlePollClick);
+        poll.appendChild(opt);
+    }
+    messages.appendChild(poll);
+    scroll();
+}
+
+function handlePollClick(e) {
+    var opt = e.currentTarget;
+    var val = parseInt(opt.dataset.value);
+    // Disable all options and highlight selected
+    opt.parentElement.querySelectorAll('.poll-option').forEach(function(o) {
+        o.style.pointerEvents = 'none';
+        if (parseInt(o.dataset.value) === val) o.classList.add('selected');
+        else o.style.opacity = '0.4';
+    });
+    liveSend({type: 'final_trust', value: val});       // send rating to server
+}
+
+function startCountdown() {
+    document.getElementById('countdown-bar').style.display = 'block';
+    var num = document.getElementById('countdown-num');
+    var c = 5;
+    var iv = setInterval(function() {
+        c--;
+        num.textContent = c;
+        if (c <= 0) { clearInterval(iv); document.querySelector('.otree-btn-next').click(); }
+    }, 1000);
+}
+
+
+// NUMBER EXTRACTION — converts written numbers to integers
+// "seventy five" -> 75, "sixty" -> 60
+// Used as fallback when no digits found in the text.
+function resolveSplitResponse(text, splitA, splitB) {
+    // Resolve a participant's reply to a "which of two numbers is your share" question.
+    // Returns one of splitA/splitB, or null if cannot be determined.
+    // splitA = the first number in the original X/Y notation (typically the bot anchored on this).
+    var t = (text || '').toLowerCase().trim();
+    if (!t) return null;
+
+    // 1. DIRECT NUMBER — if they typed a number that matches one of the splits, use it.
+    var nums = t.match(/\d+/g);
+    if (nums) {
+        for (var i = 0; i < nums.length; i++) {
+            var n = parseInt(nums[i]);
+            if (n === splitA || n === splitB) return n;
+        }
+    }
+
+    // 2. PRONOUN RESOLUTION — bot most likely asked "is the {splitA} yours or mine?".
+    //    "yours" => splitA belongs to participant => return splitA.
+    //    "mine"  => splitA belongs to bot => participant has the OTHER number => return splitB.
+    //    Use word boundaries to avoid matching substrings inside other words.
+    var words = t.split(/[^a-z']+/).filter(function(w) { return w.length > 0; });
+    var yoursWords = ['yours', 'you', 'youre', "you're"];
+    var mineWords  = ['mine', 'my', 'me', 'im', "i'm", 'myself'];
+    var hasYours = words.some(function(w) { return yoursWords.indexOf(w) !== -1; });
+    var hasMine  = words.some(function(w) { return mineWords.indexOf(w)  !== -1; });
+    if (hasYours && !hasMine) return splitA;
+    if (hasMine && !hasYours) return splitB;
+
+    // 3. POSITION REFERENCES
+    if (/\bfirst\b/.test(t))           return splitA;
+    if (/\b(second|other|latter)\b/.test(t)) return splitB;
+
+    return null;
+}
+
+function wordsToNumber(text) {
+    var tens = {
+        'thirty': 30, 'forty': 40, 'fifty': 50,
+        'sixty': 60, 'seventy': 70, 'eighty': 80
+    };
+    var ones = {
+        'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,
+        'six': 6, 'seven': 7, 'eight': 8, 'nine': 9
+    };
+    var cleaned = text.toLowerCase().replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+
+    for (var t in tens) {
+        if (cleaned.indexOf(t) !== -1) {
+            var result = tens[t];
+            for (var o in ones) {
+                if (cleaned.indexOf(t + ' ' + o) !== -1) {
+                    return result + ones[o];           // e.g. "seventy five" = 75
+                }
+            }
+            return result;                             // e.g. "seventy" = 70
+        }
+    }
+    return null;                                       // no number found
+}
+
+// DEBOUNCE — wait for participant to finish before processing.
+// If they send a message then keep typing within DEBOUNCE_MS, combine both.
+// Prevents "haha" being processed before "but seriously 70%".
+var pendingMessages = [];
+var debounceTimer = null;
+var DEBOUNCE_MS = 3000;                                // 3 second wait after last message — extends on typing
+
+function resetDebounce() {
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function() {
+        var combined = pendingMessages.join(' ');       // merge all pending into one string
+        pendingMessages = [];
+        debounceTimer = null;
+        hideInput();
+        processCombinedMessage(combined);               // process the full message
+    }, DEBOUNCE_MS);
+}
+
+function handleSend() {
+    if (sendBtn.disabled) return;                       // prevent double-click
+    if (waitingFor === 'counter_response') return;      // emoji buttons handle this
+    var rawVal = chatInput.value.trim();
+    if (!rawVal) return;                                // ignore empty input
+    if (rawVal.length > 500) {                          // truncate long pastes (probe 8)
+        rawVal = rawVal.substring(0, 500);
+    }
+
+    addYouMsg(rawVal);                                  // show their message in chat
+    chatInput.value = '';                                // clear the input
+    chatInput.focus();
+
+    pendingMessages.push(rawVal);                       // add to pending buffer
+    resetDebounce();                                    // (re)start the debounce timer
+}
+
+function processCombinedMessage(rawVal) {
+    var val = rawVal.toLowerCase();
+
+    // GREETING RESPONSE — they answered "how are you?"
+    if (waitingFor === 'greeting_response') {
+        liveSend({type: 'greeting_response', raw_text: rawVal, messages: chatMessages});
+        waitingFor = 'processing';                      // wait for server response
+
+    // FAIR SPLIT — they answered "what percentage is fair?"
+    } else if (waitingFor === 'chat_fair_split') {
+        var fairNum = null;
+        var nums = val.match(/\d+/g);                   // find all digits in their text
+        if (nums) {
+            for (var i = 0; i < nums.length; i++) {
+                var n = parseInt(nums[i]);
+                if (n >= 0 && n <= 100) { fairNum = n; break; }  // first valid percentage
+            }
+        }
+        if (!fairNum) fairNum = wordsToNumber(val);     // try word-to-number fallback
+
+        if (fairNum === null) {
+            // could not extract a number — send to server for Taylor/AI to ask naturally
+            liveSend({type: 'clarify_fair_split', raw_text: rawVal, messages: chatMessages});
+            waitingFor = 'processing';
+            return;
+        }
+        liveSend({type: 'chat_fair_split', value: fairNum, raw_text: rawVal, messages: chatMessages});
+        waitingFor = 'processing';
+
+    // DEMAND — they stated a percentage for the equity split
+    } else if (waitingFor === 'demand') {
+        // OPTION A REFACTOR: no JS-side interpretation.
+        // Send the raw text straight to the server. Intent inference (LLM) will
+        // determine what the participant meant — extract demand value, detect
+        // off-topic input, identify withdraw/hedging, handle "X for Volo" framings,
+        // process slash notation typos, parse vague language ("a third", "majority").
+        // The algorithm is unchanged; only the interpretation layer is.
+        liveSend({
+            type: 'demand',
+            round: currentRound,
+            raw_text: rawVal,
+            messages: chatMessages
+        });
+        waitingFor = 'processing';
+
+    // counter_response is handled by emoji buttons, not text input
+    }
+}
+
+
+// INITIALIZATION — runs when the page loads
+// Sets up variables, event listeners, and starts the chat.
+// Handles two scenarios: fresh start or reconnection after page reload.
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up globals from oTree template variables
+    isHuman = {{ if is_human }}true{{ else }}false{{ endif }};    // condition: human or ai
+    opening = {{ opening_json }};                                 // LLM-generated opening lines
+    greeting = {{ greeting_json }};                               // LLM-generated greeting lines
+    DEMAND_MIN = {{ demand_min }};                                // = C.DEMAND_MIN (1) from negotiation app
+    DEMAND_MAX = {{ demand_max }};                                // = C.DEMAND_MAX (99) from negotiation app
+    MAX_ROUNDS = {{ max_rounds }};                                // 5
+    STOPSTART_ROUND = {{ stopstart_round }};                      // round where Taylor "deletes and rewrites"
+    AFTERTHOUGHT_ROUNDS = {{ aSfterthought_rounds_json }};         // rounds that get a tag-on bubble
+    currentRound = 1;                                             // start at round 1
+    waitingFor = 'opening';                                       // first state
+
+    // Get DOM elements
+    chatBody = document.getElementById('chat-body');
+    messages = document.getElementById('messages');
+    typingArea = document.getElementById('typing-area');
+    inputBar = document.getElementById('input-bar');
+    chatInput = document.getElementById('chat-input');
+    sendBtn = document.getElementById('send-btn');
+    headerStatus = document.getElementById('header-status');
+
+    // Grab Taylor's photo URL from the header avatar (human condition only)
+    if (isHuman) {
+        var headerImg = document.querySelector('.chat-header-avatar img');
+        if (headerImg) taylorImg = headerImg.src;
+    }
+
+    // Event listeners for the text input
+    sendBtn.addEventListener('click', handleSend);
+    chatInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { handleSend(); return; }        // Enter key sends
+    });
+    // Any typing activity (key, paste, IME) after a send extends the debounce.
+    // Catches paste/autocomplete that keydown misses.
+    chatInput.addEventListener('input', function() {
+        if (pendingMessages.length > 0 && debounceTimer && chatInput.value.length > 0) {
+            resetDebounce();
+        }
+    });
+
+    // Check for reconnection (participant refreshed or lost connection)
+    var chatState = null;
+    var isReconnect = {{ if is_reconnect }}true{{ else }}false{{ endif }};
+    {{ if is_reconnect }}
+    chatState = {{ chat_state_json }};                            // saved state from server
+    {{ endif }}
+
+    if (isReconnect && chatState) {
+        // RECONNECTION: Restore previous chat history
+        currentRound = chatState.round;                           // resume at the right round
+
+        // Restore pendingDemand from server state (if they rejected + typed a number)
+        if (chatState.pending_demand) {
+            pendingDemand = chatState.pending_demand;
+        }
+
+        // Render all previous messages instantly (no animation on reconnect)
+        chatState.messages.forEach(function(msg) {
+            if (msg.sender === 'partner') {
+                var div = document.createElement('div');
+                div.className = 'msg-partner';
+                var av = isHuman
+                    ? '<img src="' + taylorImg + '" style="width:100%;height:100%;object-fit:cover;">'
+                    : 'AI';
+                div.innerHTML =
+                    '<div class="avatar-small' + (isHuman ? '' : ' ai') + '">' + av + '</div>' +
+                    '<div class="bubble">' + msg.text + '</div>';
+                messages.appendChild(div);
+            } else if (msg.sender === 'you') {
+                var div = document.createElement('div');
+                div.className = 'msg-you';
+                div.innerHTML = '<div class="bubble">' + msg.text + '</div>';
+                messages.appendChild(div);
+            } else {
+                var div = document.createElement('div');
+                div.className = 'msg-system';
+                div.innerHTML = '<div class="pill">' + msg.text + '</div>';
+                messages.appendChild(div);
+            }
+        });
+        chatMessages = chatState.messages;                        // restore the JS history array
+        scroll();
+
+        // Reconnection message from the character (not a system message)
+        // Taylor says "sorry we got disconnected" / AI says "Connection restored."
+        var reconnectLines = JSON.parse('{{ reconnect_json }}');
+        setTimeout(function() {
+            animateLines(reconnectLines, function() {
+                var w = chatState.waiting_for;
+                waitingFor = w;
+                if (w === 'counter_response') showEmojiChoice();
+                else if (w === 'chat_fair_split') showInput('Type a number...');
+                else if (w === 'deal_done') startWindDown();
+                else if (w === 'done') goOfflineAndAskTrust();
+                else showInput('Type your response...');
+            });
+        }, 1000);
+
+    } else {
+        // FRESH START: Login sequence then greeting
+        if (isHuman) {
+            // Taylor login sequence: offline → logging on → online → typing
+            headerStatus.textContent = 'offline';
+            headerStatus.style.color = '#ccc';
+            setTimeout(function() {
+                headerStatus.textContent = 'logging on...';
+                headerStatus.style.color = '#e8a735';
+                setTimeout(function() {
+                    headerStatus.textContent = 'online';
+                    headerStatus.style.color = '';
+                    setTimeout(function() {
+                        // Add time-of-day to Taylor's first greeting line
+                        var hour = new Date().getHours();
+                        var timeGreeting = '';
+                        if (hour < 12) timeGreeting = 'morning! ☀️';
+                        else if (hour < 17) timeGreeting = 'afternoon!';
+                        else timeGreeting = 'evening!';
+                        greeting[0] = 'good ' + timeGreeting + " I'm Taylor from Volo Technologies' partnerships team 👋";
+                        animateLines(greeting, function() {
+                            waitingFor = 'greeting_response';
+                            showInput('Type your response...');
+                        });
+                    }, 5000);
+                }, 9000);
+            }, 7000);
+        } else {
+            // AI: no login sequence, just start
+            animateLines(greeting, function() {
+                waitingFor = 'greeting_response';
+                showInput('Type your response...');
+            });
+        }
+    }
+});
+</script>
+{{ endblock }}

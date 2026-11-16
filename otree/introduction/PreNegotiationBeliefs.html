@@ -1,0 +1,30 @@
+{{ block title }}Before you begin{{ endblock }}
+{{ block content }}
+<p>Before the negotiation starts, we'd like to know your initial thoughts.</p>
+<div class="card mb-4">
+    <div class="card-header"><strong>General views about people</strong></div>
+    <div class="card-body">
+        <p class="text-muted">For each statement, indicate how much you agree.</p>
+        {{ formfield 'trust_1' }}
+        {{ formfield 'trust_2' }}
+        {{ formfield 'trust_3' }}
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-header"><strong>Fairness belief</strong></div>
+    <div class="card-body">
+        <p>Given both parties' contributions (you wrote {{ dev_code_pct }}% of the code, Volo Technologies provided {{ volo_code_pct }}% via their API):</p>
+        {{ formfield 'pre_fair_split' }}
+        {{ formfield 'pre_fair_confidence' }}
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-header"><strong>Your expectations about {{ partner_short }}</strong></div>
+    <div class="card-body">
+        {{ formfield 'pre_trust_competence' }}
+        {{ formfield 'pre_trust_fairness' }}
+        {{ formfield 'pre_trust_overall' }}
+    </div>
+</div>
+{{ next_button }}
+{{ endblock }}

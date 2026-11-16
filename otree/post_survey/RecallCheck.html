@@ -1,0 +1,14 @@
+{{ block title }}Your impressions{{ endblock }}
+{{ block content }}
+<p>We would like to understand your impressions of Volo Technologies' representative.</p>
+
+{{ formfield 'suspicion_identity' }}
+{{ formfield 'suspicion_reason' }}
+
+<hr class="my-4">
+<p>Please think back to the beginning of the study.</p>
+{{ formfield 'manip_label' }}
+{{ formfield 'manip_transparency' }}
+
+{{ next_button }}
+{{ endblock }}

@@ -1,0 +1,11 @@
+{{ block title }}A bit about you{{ endblock }}
+{{ block content }}
+<p>Almost done — just a few quick questions about yourself.</p>
+{{ formfield 'age' }}
+{{ formfield 'gender' }}
+{{ formfield 'education' }}
+{{ formfield 'negotiation_experience' }}
+<hr class="my-4">
+{{ formfield 'ai_familiarity' }}
+{{ next_button }}
+{{ endblock }}

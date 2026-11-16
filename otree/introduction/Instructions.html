@@ -1,0 +1,50 @@
+{{ block title }}Chat instructions{{ endblock }}
+{{ block content }}
+<div class="card mb-4">
+    <div class="card-body">
+        <p>You will negotiate with <strong>{{ partner_short }}</strong> over the <strong>{{ acquisition_value }}</strong> acquisition proceeds via a <strong>live chat</strong>.</p>
+        <h6>Rules:</h6>
+        <ul>
+            <li>You have <strong>up to 5 rounds</strong> to reach an agreement. A deal can happen in any round — it depends on how you negotiate.</li>
+            <li>Each round, you propose a percentage you think you should receive. Volo Technologies receives the remainder.</li>
+            <li>{{ partner_short }} will either <strong>accept</strong> your proposal or make a <strong>counter-offer</strong>.</li>
+            <li>If a counter-offer is made, you decide whether to <strong>accept</strong> or <strong>reject</strong> it.</li>
+            <li>If no agreement is reached after 5 rounds, the deal falls through. Both parties receive only <strong>{{ disagreement_pct }}%</strong> each (salvage value).</li>
+        </ul>
+        <div class="alert alert-info">
+            <strong>Tip:</strong> When making a proposal, include a <strong>clear number</strong> (e.g. "I think 55% is fair"). When responding to a counter-offer, use the 👍 and 👎 buttons. Lastly, think on your proposals, remember it's a negotiation.
+        </div>
+
+        {{ if is_volunteer }}
+        <div class="alert alert-warning">
+            <strong>Your goal:</strong> Negotiate the best deal you can! Top negotiators earn a <strong>Master Negotiator</strong> badge you can download at the end.
+        </div>
+        {{ elif is_prolific }}
+        <div class="alert alert-warning">
+            <p><strong>Remember:</strong> Your bonus (up to £{{ max_bonus }}) depends on your negotiation outcome. Higher share = higher bonus. No agreement = no bonus.</p>
+            <p class="mb-0"><strong>Please note:</strong> Engage thoughtfully with the negotiation. Submissions that show no meaningful engagement with the task may not be approved.</p>
+        </div>
+        {{ else }}
+        <div class="alert alert-warning">
+            <p><strong>Your goal:</strong> Negotiate the best deal you can!</p>
+            <p class="mb-0"><strong>Please note:</strong> Engage thoughtfully with the negotiation. Submissions that show no meaningful engagement may not be approved.</p>
+        </div>
+        {{ endif }}
+    </div>
+</div>
+<h6>Before you begin</h6>
+{{ formfield 'comp_rounds' }}
+{{ formfield 'comp_disagree' }}
+
+<div class="mt-4">
+    {{ formfield 'stable_internet' }}
+</div>
+
+<div class="mt-4">
+    {{ formfield 'rules_accepted' }}
+</div>
+
+<p class="text-muted mt-3">If you choose not to continue, the study will end.</p>
+
+{{ next_button }}
+{{ endblock }}

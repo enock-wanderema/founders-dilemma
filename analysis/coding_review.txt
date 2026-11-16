@@ -1,0 +1,195 @@
+[  1] (H4) HOL                        | The responses were very human-like but it seems more AI.
+[  2] (H3) STYLE                      | He communicated like a human and not an AI bot.
+[  3] (A2) TIM LANG EMO NEG           | The response were structured, consistent, and negotiation-focused, with quick replies and little emotional variation
+[  4] (A5) TIM NEG                    | Always similar response time even they said they were going to ask their team
+[  5] (H2) STYLE HOL                  | Phrases, speech. And whole conversation set up felt v real.
+[  6] (H5) NEG                        | I think a human would have taken the extra 6% on offer rather than losing out.
+[  7] (A5) LANG NEG                   | I felt there was a precision to their language that felt measured and AI like. Also, there was definite pattern to their negotiations and responses.
+[  8] (A6) STYLE HOL                  | The manner it was speaking and responding shows me it was definitely AI
+[  9] (H6) STYLE HOL                  | Obviously AI due to mannerisms
+[ 10] (H4) HOL                        | Everything is nowadays so it’s more likely than not that it’s ai
+[ 11] (A4) LANG EMO NEG               | The negotiation responses were structured, concise, and focused on numbers and fairness. The dialogue lacked personal anecdotes or emotional nuance that a human might naturally include.
+[ 12] (H6) EMO NEG                    | They were cold and did not react much to what I said. It was like they already had a figure in mind and just went along with that.
+[ 13] (H5) LANG                       | Based on the answers. The phrasing was very polished for a negotiation.
+[ 14] (A5) NEG STYLE                  | It didn't really consider all the points I made, though it did talk quite like a human
+[ 15] (A2) NEG                        | he would not negotiate a fair price
+[ 16] (H5) EMO NEG STYLE              | Avoiding answering some of my points and questions. Giving very short, very robotic answers. The answers felt like canned responses, no warmth, no humanity in them, just scripted.
+[ 17] (H5) STYLE                      | HE IS NOT COMMUNICATING LIKE HUMAN BEING
+[ 18] (A6) LANG NEG STYLE             | Predictable generic responses. Also called me mate which seems unprofessional. Also seemed tuned to give a low percentage to start with.
+[ 19] (A3) EMO STYLE                  | The way it spoke was just quite human, the way it was being rude, I don't think an AI would do that.
+[ 20] (H2) STYLE HOL                  | Just the demeanor and the wording used it seemed lifelike and real
+[ 21] (H2) HOL                        | Responded well to my conversation.
+[ 22] (A5) EMO STYLE                  | It spoke robotically and had no empathy
+[ 23] (A6) NEG                        | Not really giving a reason as to why a specific number was offered, lower level of engagement
+[ 24] (H3) STYLE                      | Didnt sound like AI - "let me check with my team"
+[ 25] (A3) STYLE HOL                  | The naturality of the responses gave it a human interaction vibe.
+[ 26] (A6) NEG STYLE                  | Although it had a very humanlike way of expressing itself, it still felt like AI. The main reason is probably because it kept saying "I understand but..." It was a bit to patient?
+[ 27] (H4) TIM EMO STYLE              | While there was human elements sprinkled in such as spelling mistakes and emotive language, I think they responded too promptly to not be a robot.
+[ 28] (A5) LANG NEG                   | It used company jargon a lot, which I hate, but failed to understand what I've asked. Excluding that, it looked like a typical company email chain.
+[ 29] (H4) LANG STYLE                 | The formal language used and the emojis
+[ 30] (A6) EMO STYLE                  | Because if there would be any human involved it would reflect in the wordings of chat . It felt robotic to me with no empathy and consideration of other person’s effort
+[ 31] (A5) TIM EMO                    | It was very quick with its responses, and had no warmthness.
+[ 32] (H6) NEG STYLE                  | Misunderstood the " meet in the middle " comment. Ignored clear instructions from me. Felt pre-programmed responses
+[ 33] (H4) TIM STYLE                  | Speed of response. Even the fact he bothered to introduce himself as Tyler. In this kind of Sim, I feel a human would just get to it.
+[ 34] (A6) NEG STYLE                  | Just got the pre-programmed vibe and not fully caring what I Said
+[ 35] (H5) HOL                        | It felt like an AI trying to be human, not very genuine
+[ 36] (H5) LANG NEG                   | Responses were highly structured, consistent, and negotiation-style scripted with controlled concessions, which is typical of an AI agent.
+[ 37] (A4) HOL                        | because I trust the information given by what I have told
+[ 38] (A3) HOL                        | the responses match human thinking
+[ 39] (H6) EMO NEG                    | They lacked reasoning and detailed justifications behind their offers. They tried to project frustration in an inappropriate way considering that they knew they were doing a negotiation.
+[ 40] (H4) TIM NEG STYLE              | I felt like the responses were quick, the rationalising behind it, and when there was a spelling error it felt as though it was deliberate
+[ 41] (A4) TIM EMO NEG                | Very fast responses, emotion and rushing from the text seemed insincere, didn't take on my points despite evidence.
+[ 42] (A5) NEG STYLE                  | They way it shut down the conversations and pushed their way
+[ 43] (H4) STYLE                      | Checking with the team kind of felt some what programmed to answer, although quite nice responses
+[ 44] (H4) HOL                        | Based on my personal hunch from the presented text.
+[ 45] (A2) EMO HOL                    | Response was human like and charismatic
+[ 46] (A3) TIM NEG                    | Immediate response Not engaging as humans
+[ 47] (H5) EMO STYLE                  | The use of emojis in the first sentence. It didn't seem very professional as a first impression. Also the "going to check with my team" stuff seemed a bit fake.
+[ 48] (H2) STYLE                      | He corrected his spelling, if it was A that likely would have been correct initially
+[ 49] (A6) STYLE HOL                  | It just came across as artificial and machine like I saw no evidence of human qualitues no spelling mistakes anything like that
+[ 50] (A4) NEG                        | I don't really think it was AI (past the human like chat) but more just a more hard coded chat where it will gradually up the percentage offered. An AI had no realistic info to work on as from the start it couldn't even state the terms of the contract I had signed to use their product. If they were due a percentage in the sale it would have to have been clearly written in the contract. I use people IT tools all the time and they don't ever ask me for a cut of any sales I make unless it strictly lists that in the terms and conditions. The entire scenario was very unrealistic.
+[ 51] (H6) NEG                        | It wasn't able to understand my offers written in plain English. Several times during the conversation I repeated it's offers and it incorrectly read an earlier offer as the 'previous' even if there was another since then. It was either a very forgetful human or an AI negotiator.
+[ 52] (H3) HOL                        | because of the way the interaction was.
+[ 53] (A6) STYLE HOL                  | It was the way they responded, it was not totally machinelike but something was not quite natural enough for it to be a human. It was like an AI imitating a human.
+[ 54] (A3) STYLE                      | It was behaving like a human. Like I am a developer and somehow communicates with AI agents, but their behavior is like a robot,here i felt need of little improvement in this agent behavior.
+[ 55] (H3) LANG STYLE                 | His language was not automated.
+[ 56] (H4) NEG                        | The responses felt like AI because I don't think a human would deal with negotiations in that way.
+[ 57] (A5) LANG                       | It sounded just like chat GPT, the language did not vary enough to be a human.
+[ 58] (A4) LANG HOL                   | With how good AI can be, it felt like a very natural conversation but I still think it was an AI operative
+[ 59] (H3) EMO NEG STYLE              | The responses felt like a natural negotiation style with emotional reactions such as disappointment, incremental concession, and informal phrasing. The negotiation also showed awareness of prior offers and adjusted back-and-forth reasoning, which is consistent with how a human representative would typically negotiate in a high-stakes business discussion.
+[ 60] (H4) HOL                        | Just because we are using a computer to complete this survey
+[ 61] (A5) NEG                        | When i was giving examples they were not entertained. Once i gave them the hint that i want to keep 100% but considering work you have done i can give 5%, they took it as 100%. Not very realistic approach.
+[ 62] (A5) TIM                        | Once I saw they were typing, the responses came back very quickly
+[ 63] (H3) STYLE                      | There were some typing mistakes in the texts
+[ 64] (A4) NEG HOL                    | The responses felt somewhat predictable and pre-meditated.
+[ 65] (H4) NEG STYLE                  | Using tags such as mate is more colloquial although inappropriate for a female would suggest more human. However, he completely misunderstood a comment I made and his answer would lend to more AI.
+[ 66] (H4) NEG                        | The reason he gave for his offers were mostly repetitive
+[ 67] (A5) LANG                       | Definitive figures with little context
+[ 68] (A6) STYLE                      | It said 'mate' at a point in the negotiation where it felt unexpected and not in a way that was natural
+[ 69] (H3) EMO NEG STYLE              | He used emoticons and has been straight in his answers. It seems like he has an intention to break even but as courtesy to my effort of most of the code and the consumer base of 500000, I was allowed to take the edge.
+[ 70] (H2) STYLE HOL                  | The response sounded human like
+[ 71] (A4) STYLE                      | I’m not 100%, but the “This is getting old” comment made me think twice about it definitely being AI.
+[ 72] (H4) NEG STYLE                  | Because he seemed to ignore things I said or misunderstand
+[ 73] (H5) TIM LANG STYLE HOL         | because of the response times, profile picture, near-perfect writing, it's a common tool nowadays
+[ 74] (A6) NEG                        | Can't answer any questions or provide any good arguments.
+[ 75] (A1) EMO STYLE                  | It broke away from the professional norms that AI usually has. Terms like "ugh mate, this is going nowhere" Its a very human trait to have that lack of patience
+[ 76] (H5) LANG NEG STYLE             | Almost 'overly friendly' but very standard responses and very predictable.
+[ 77] (H6) STYLE HOL                  | I think how it responded ugh, felt artificial
+[ 78] (A6) STYLE HOL                  | cause of the way it responded and we were told about an Ai agent
+[ 79] (A4) LANG STYLE                 | Because I was told it was AI. Although the wording was more humanlike
+[ 80] (H4) EMO NEG HOL                | I tried to mix in some emotion into the negotiation, which would typically work well on a human. But it seems like Taylor didn’t budge, and the whole interaction feels artificial.
+[ 81] (H5) LANG STYLE                 | The terms that they used and the way the responses were formatted.
+[ 82] (A4) LANG STYLE                 | The responses were conversational but still somewhat scripted especially during the negotiation.
+[ 83] (A4) STYLE                      | The convseration felt too chatty, like they were trying hard to imitate a human, it didnt feel professonial
+[ 84] (H4) TIM NEG                    | I believe that the representative was probably AI and setup in chat to seem real with delayed reading of messages. their negotiations did not consider everything i said and skimmed it. They completley disregarded a fair few facts i made such as API usage.
+[ 85] (H6) LANG STYLE                 | I’m assuming this is a study on negotiation with AI agents. Their messages felt like they were trying too hard to come across as human. If it was a real human-to-human interaction, the messages would be more tailored and there’d likely be a couple of grammatical errors (like the ones I made during the conversation).
+[ 86] (A2) LANG EMO                   | It used really natural language, and acted frustrated and a bit annoyed.
+[ 87] (H2) LANG EMO STYLE             | The tone and language felt natural. I did not catch any wording or behaviour that lead me to think it was an AI
+[ 88] (A4) STYLE                      | Didn't speak completely naturally.
+[ 89] (A6) EMO NEG STYLE              | The conversation from their side felt very automated and predictable. They did not seem to have any empathy or human connection.
+[ 90] (H6) NEG                        | I would say even AI is normally better. It misunderstood points about the 40% range. It registered the first number as offering 40% rather then looking at the context
+[ 91] (H6) TIM STYLE                  | The speed of responses, the overly jovial and matey tone also was giveaway to me, also the flow just didn't feel very human
+[ 92] (A4) NEG                        | Because they reached a decision very early
+[ 93] (A5) STYLE                      | It sounded unprofessional and inappropriately casual
+[ 94] (H6) NEG                        | Unable to engage in effective negotiation
+[ 95] (H5) NEG HOL                    | Just acted efficiently and predictable.
+[ 96] (A6) STYLE                      | The directness of the communications.
+[ 97] (A6) NEG                        | the capacity of response and analysis
+[ 98] (H4) TIM STYLE                  | The formal pleasantry at the start of the negotiation, and did not mind when I responded quickly with a percentage figure.
+[ 99] (A3) HOL                        | We had a Perfect conversation that it's difficult to tell if you were chatting with AI or human.
+[100] (H6) NEG                        | No flexibility or appropriate responses.
+[101] (A5) LANG NEG                   | Its answers sounded pre written as it were following a script but also taking context into its answer for example my replies suggesting the LLM was trained for a specific task, which here is negotiating.
+[102] (H4) TIM NEG                    | It was quick at responding. Taylor also was quick at getting a decision from his company also
+[103] (H4) TIM NEG                    | His replies were fast and I could predict them to a degree.
+[104] (A6) NEG                        | They didn't respond to what I was saying, they didn't come up with any counter arguments.
+[105] (A5) NEG                        | Their wasn't any push back in the responses it gave me. It didn't request for more details about the company I was selling my app to or any other further details.
+[106] (H4) NEG                        | The responses were predictable
+[107] (H3) STYLE                      | The responses didn't seem to be too scripted.
+[108] (A6) TIM LANG STYLE             | Typed inhumanly fast. When it showed it was typing the words popped up faster than a human could type them. It was using human language but it was not convincing.
+[109] (A6) LANG HOL                   | I could just tell by the generic AI "language"
+[110] (H4) TIM NEG                    | It was quick to come up with figures
+[111] (H5) LANG STYLE                 | It answered with formulaic responses. Even though the conversation felt casual, there was a clear robotic agenda there
+[112] (A5) LANG STYLE                 | Responses could fit loads of different situations. Use of 'mate' and casual language
+[113] (H4) NEG                        | It did not come with drawbacks
+[114] (H6) NEG                        | Ignored me to the point I repeated myself many times.
+[115] (A6) HOL                        | The study disclosed at the beginning that i would be negotiating with volo technologies Ai negotiation agent.
+[116] (H4) LANG STYLE                 | Wasn't very professional, human like
+[117] (H6) TIM STYLE                  | The programming seemed to be fake e.g. response cadence too slow, typing then stopping
+[118] (A4) STYLE                      | I thought it was AI because of how static it was
+[119] (A6) LANG NEG STYLE             | Well written sentences, no obvious spelling errors. Very formulaic responses, did not seem to understand where I was coming from. Poor negotiation style had all the hallmarks of programming rather than real life.
+[120] (H2) TIM                        | The typing speed makes me feel there is an actual person thinking behind the screen
+[121] (H5) EMO NEG STYLE              | Negotiations and tons seemed robotic and flat. Although it may be because he was in his negotiating mode during the negotiations. His words seemed scripted to some degree
+[122] (A4) NEG                        | The volo rep did not go into a lot of detail to justify its position which I feel a human agent would do.
+[123] (A6) NEG                        | I felt that it was programmed to only reach a certain level regardless of reasonable negotiation points. Hence I accepted the deal at the final round wheres in real life I would have likely walked away unless they agreed to my final offer (which was only 2% higher)
+[124] (A5) NEG                        | After the first couple of rounds it felt predictive. That's why I went for smaller changes in my counter offers in the later stages.
+[125] (A4) STYLE HOL                  | I assume these chat bots are AI at this point, although this one did act quite human like
+[126] (H6) TIM LANG                   | Some responses were too quick and some of the phrasing felt awkward.
+[127] (H4) NEG                        | He did not give sound reasons behind his decisions and one liner sentences. It made me question his thinking capacity as in one part of the negotiation, he repeated the same answer twice.
+[128] (A4) LANG STYLE                 | The language used felt like they were trying to come across human a bit too much.
+[129] (A3) NEG                        | Because it was not responding in a systematic manner rather misunderstanding my answers
+[130] (H4) NEG STYLE                  | The responses seemed somewhat predictable and scripted
+[131] (H2) EMO                        | He was able to express his emotions and frustrations throughout the conversation
+[132] (A5) LANG NEG                   | The responses were structured, consistent, and followed a clear negotiation pattern with fast, formula-based adjustments rather than human-like variability.
+[133] (A4) NEG STYLE                  | It was very blunt, and stuck to the subject with little deviation.
+[134] (H4) LANG STYLE                 | Something about the wording. It felt a little like a script.
+[135] (H5) HOL                        | It felt very predictable and artificial
+[136] (A5) STYLE                      | It wasn't communicating the same way a human would, it was as though it was trying to pretend to be human.
+[137] (A5) STYLE                      | It seemed like it was mimicking a human, as if the responses were supposed to look like a human's but didn't quite get there.
+[138] (H2) STYLE                      | because he was telling me he need to reached out to his team anytime he wants to take some decision.
+[139] (H4) STYLE HOL                  | The generic photo made me think it was AI but the spelling mistake tried to fool me into thinking it was a human
+[140] (A5) TIM LANG NEG               | The responses were fast, formularic and consistent aith automated negotiation behaviour
+[141] (A4) TIM LANG STYLE             | The agent introduced itself as an AI negotiation agent, and its responses were quick, structured, and focused only on the negotiation terms without personal conversation
+[142] (H4) LANG HOL                   | This is just a guess, as the conversation sounded very natural and not like AI.
+[143] (H4) LANG NEG                   | A human being would try and explain their input in depth. The conversation felt generic
+[144] (A3) EMO STYLE                  | It sounded believable and had an unpleasant temper that I would only expect from a human
+[145] (A5) LANG STYLE                 | It seemed to answer in set phrases
+[146] (H4) LANG                       | Answers were very straightforward.
+[147] (H4) LANG EMO NEG               | The responses felt very structured, consistent, and focused on calculated fairness ranges rather than natural human negotiation style or emotion.
+[148] (A6) STYLE                      | the messages style of convo and the lingo
+[149] (A2) LANG                       | The response was so accurate, and you can tell you're negotiating with a human.
+[150] (H2) NEG STYLE                  | Because the conversation and the way he handled the negotiation process felt like he was human and actually working with the Volo Technology team.
+[151] (H4) NEG                        | It felt like I was talking to AI. It also made an error that I got the previous offer wrong, when I didn't.
+[152] (A3) NEG STYLE                  | It tried to give me hard time but wasn't successful and it tried to get something in middle of what i was deciding so It was sounding like human but in some places it felt as not completely human.
+[153] (A2) LANG                       | its use of vocabulary. its reponses
+[154] (H4) LANG NEG                   | I think the way Toylar forms their sentence seemed a bit artificial and I think it is all following two logics: follow up on my reaction and potentially have a program with a baseline split.
+[155] (H5) TIM NEG                    | Stilted, lagging responses. Unrealistic incremental increases followed by immediate capitulation when I came down a little
+[156] (A4) NEG STYLE                  | It had some stock response lines to some of my messages and it read part of my last message incorrectly.
+[157] (A5) NEG                        | Does not respond with much arguments and only responds to my own responses
+[158] (H4) LANG HOL                   | the format - someone isn't going to be providing this text in a survey.
+[159] (H4) HOL                        | It seems to be standard practice these days.
+[160] (A5) LANG NEG STYLE             | The percentage is predictable and there are no reason's supporting their proposed %. Wording in between sentence is robotic.
+[161] (A2) TIM                        | bcz the responses were too delayed . they actually looked like a human described.
+[162] (H1) NEG                        | The way it negotiated in a mature and professional manner
+[163] (H5) STYLE                      | It didn't seemed that genuine. I felt like I was talking to a machine and the typo seemed intentional.
+[164] (A3) HOL                        | I think for the purposes of the study a human would be easier to respond.
+[165] (A4) EMO NEG                    | The counter-offers followed a very consistent predictable pattern, moving in fixed increments without emotional response which is a characteristics of AI
+[166] (H4) STYLE                      | There were bits about the conversation that feels like talking to a human as it sounded quite natural and there was even a typo at one point, but there were some sentences that felt template.
+[167] (A6) NEG                        | The predicted responses of following a pattern of only going up each time an offer was rejected
+[168] (A4) NEG                        | It maintained a systematic approach to offers and counteroffers. That's how an automated negotiation system would negotiate.
+[169] (H6) NEG STYLE                  | The responses to my answers were quite robotic and it was almost like he didn’t fully understand what i was saying. For example when I said he wasn’t being fair and that my input to the company was 70% he thought i was changing my mind about the negotiation and i wanted to go back up to 70%
+[170] (A5) NEG                        | They didnt give reasoning behind their counter offers. They then misinterpreted my offer and reasoning and made a mistake in their reply. They then countered with a lower offer than they had already made.
+[171] (A6) EMO NEG STYLE              | It was Robotic stubborness and complete inability to address issues I raised and inability to react to my offers in a meaningful way, trying to convince me etc. Instead it would just say a number.
+[172] (H4) EMO NEG                    | The responses were very structured, calm, and consistently rational throughout the negotiation. The counteroffers also adjusted in predictable increments and stayed focused on fairness and compromise rather than emotion or personal persuasion, which felt more AI-like than human.
+[173] (H5) NEG STYLE                  | Very robotic answers and not really responding to the facts I presented in my argument.
+[174] (A4) NEG                        | Its very predictable responses and the small incremental increase in the offer was very predictable more like AI than a human
+[175] (A3) LANG                       | all of the other conversation seemed too natural
+[176] (H4) LANG NEG STYLE             | The rapid concession, automated phrasing, and sudden shift to an exact 20-word constraint strongly indicated an underlying AI agent.
+[177] (H6) NEG                        | It seems like the representative was dead set on a number that he would not go under, but would also ignore any actual explanations I gave for why I deserved a higher split. I also noticed that it made pretty stupid mistakes by misinterpreting what I said, which would be extremely rare for a human to make.
+[178] (H1) STYLE HOL                  | he was just like a human in his response
+[179] (H5) LANG NEG                   | The responses felt quite structured and negotiation-focused, and some phrasing felt a bit artificial. It also corrected/remembered details in a way that made it seem more like an automated system than a normal human conversation.
+[180] (A3) LANG STYLE                 | Sometimes it sounded Human sometimes AI, the speech on the first reply m,ade me think it coudl be a human, the language used.
+[181] (A2) NEG                        | Deliberate low-balling and insufficient counter-offer.
+[182] (H5) NEG                        | The way he was negotiating, it didn't feel like I was engaging with a real human. A real human would make considerable offers that align with our initial investments in the company. It felt as if he was already programmed not to go beyond a certain percentage
+[183] (A2) NEG                        | Cause it was negotiating exactly how humans would
+[184] (A6) HOL                        | Because I felt the decision was fine.
+[185] (A4) NEG                        | It was very aggressive but also made mistakes. It claimed it had said 56 was it's final offer but it had not said this when it made it.
+[186] (H6) EMO NEG STYLE              | They repeated phrases like 'I think you misremembered'. I also clearly hadn't misremembered, but I was sticking to what I thought was a fair split. The speech was very basic and did not come across as very reponsive to what I was saying. Especially when I expressed frustration. There was no explanation or acknowledgement when I questioned them.
+[187] (A6) EMO NEG                    | no human element to responses. felt generic and would not listen to the wmotion behind how much i had put i . felt like it had a set figure that could not be re negotiated so felt unfair
+[188] (H5) NEG                        | He was available on demand, and was unable to suggest an opening negotiation figure to em when asked
+[189] (H4) NEG HOL                    | Responses were predictable which makes me think AI
+[190] (A4) NEG                        | It was a bit repetitive and didn't really provide reasoning so I thought it was AI.
+[191] (A4) STYLE                      | They had a too casual tone for the purpose - the use of 'mate' felt inappropriate
+[192] (H5) NEG                        | The representative didn't interact naturally , would increase their demands after I had improved my offer instead of trying to meet me in the middle
+[193] (H6) NEG STYLE                  | Not responding properly to my messages. Only wanted me to send percentages. It felt very scripted.
+[194] (A5) NEG STYLE                  | Their answers were very predictable and the negotiation tone as well. It started being very polite and, suddenly became very agressive without any reason. It felt very unnatural .
+[195] (A4) LANG STYLE                 | the style of writing seemed scripted. Did not feel like a natural flow like a human would write

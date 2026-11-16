@@ -1,0 +1,16 @@
+{{ block title }}Your negotiation partner{{ endblock }}
+{{ block content }}
+<div class="card mb-4 border-primary">
+    <div class="card-body"><p class="lead">{{ partner_reveal }}</p></div>
+</div>
+{{ if show_transparency }}
+<div class="card mb-4 border-info">
+    <div class="card-header bg-info text-white"><h5 class="mb-0">TRANSPARENCY DISCLOSURE</h5></div>
+    <div class="card-body">{{ transparency_text }}</div>
+</div>
+{{ endif }}
+
+<h6>Please confirm you understood:</h6>
+{{ formfields }}
+{{ next_button }}
+{{ endblock }}

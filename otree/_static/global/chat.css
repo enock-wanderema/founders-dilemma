@@ -1,0 +1,254 @@
+/* Black and white chat theme — browser compatible */
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.chat-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.chat-header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.chat-header-avatar {
+    width: 40px; height: 40px; border-radius: 50px;
+    background: #222; display: flex; align-items: center;
+    justify-content: center; color: #fff; font-weight: 700;
+    font-size: 14px; flex-shrink: 0; overflow: hidden;
+}
+.chat-header-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.chat-header-avatar.ai { border-radius: 8px; background: #000; }
+.chat-header-name { font-weight: 600; font-size: 15px; color: #111; }
+.chat-header-status { font-size: 12px; color: #888; }
+
+.chat-body {
+    padding: 16px; min-height: 300px; max-height: 500px;
+    overflow-y: auto; background: #fafafa;
+    -webkit-overflow-scrolling: touch; scroll-behavior: smooth;
+    scrollbar-width: thin; scrollbar-color: #ccc #fafafa;
+    position: relative;
+}
+.chat-body::-webkit-scrollbar { width: 6px; }
+.chat-body::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+.avatar-small {
+    width: 28px; height: 28px; border-radius: 50px;
+    background: #222; display: flex; align-items: center;
+    justify-content: center; color: #fff; font-size: 10px;
+    font-weight: 700; flex-shrink: 0; overflow: hidden;
+}
+.avatar-small img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-small.ai { border-radius: 6px; background: #000; }
+
+.msg-partner { display: flex; align-items: flex-end; margin-bottom: 4px; gap: 8px; }
+.msg-partner .bubble {
+    background: #fff; border: 1px solid #e0e0e0;
+    border-radius: 2px 16px 16px 16px; padding: 10px 14px;
+    max-width: 78%; font-size: 14px; line-height: 1.45; color: #111;
+}
+.msg-you { display: flex; justify-content: flex-end; margin-bottom: 4px; }
+.msg-you .bubble {
+    background: #111; color: #fff;
+    border-radius: 16px 2px 16px 16px; padding: 10px 14px;
+    max-width: 75%; font-size: 14px; line-height: 1.45;
+}
+.msg-status { text-align: right; font-size: 11px; color: #aaa; margin-bottom: 8px; padding-right: 4px; }
+.msg-status.seen { color: #555; }
+
+.msg-system { text-align: center; margin: 12px 0; }
+.msg-system .pill {
+    display: inline-block; background: #eee; border-radius: 12px;
+    padding: 4px 14px; font-size: 12px; color: #666;
+}
+
+.typing-row { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 4px; }
+.typing-bubble {
+    background: #fff; border: 1px solid #e0e0e0;
+    border-radius: 2px 16px 16px 16px; padding: 10px 16px;
+    display: flex; gap: 5px;
+}
+.dot { width: 7px; height: 7px; background: #999; border-radius: 16px 2px 16px 16px; }
+
+/* AI processing indicator — single pulsing dot, distinct from Taylor's typing dots */
+.processing-dot {
+    width: 12px; height: 12px; background: #555; border-radius: 50%;
+    margin-left: 4px;
+    -webkit-animation: ai-pulse 1.4s infinite ease-in-out;
+    animation: ai-pulse 1.4s infinite ease-in-out;
+}
+@-webkit-keyframes ai-pulse {
+    0%, 100% { opacity: 0.3; -webkit-transform: scale(0.9); }
+    50% { opacity: 1; -webkit-transform: scale(1.15); }
+}
+@keyframes ai-pulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.15); }
+}
+@-webkit-keyframes bounce {
+    0%,60%,100% { -webkit-transform: translateY(0); opacity: 0.3; }
+    30% { -webkit-transform: translateY(-5px); opacity: 1; }
+}
+@keyframes bounce {
+    0%,60%,100% { transform: translateY(0); opacity: 0.3; }
+    30% { transform: translateY(-5px); opacity: 1; }
+}
+.dot:nth-child(1) { -webkit-animation: bounce 1.2s infinite 0s; animation: bounce 1.2s infinite 0s; }
+.dot:nth-child(2) { -webkit-animation: bounce 1.2s infinite 0.2s; animation: bounce 1.2s infinite 0.2s; }
+.dot:nth-child(3) { -webkit-animation: bounce 1.2s infinite 0.4s; animation: bounce 1.2s infinite 0.4s; }
+
+.chat-input-bar {
+    background: #fff; border-top: 1px solid #eee;
+    padding: 10px 14px; display: flex; align-items: center; gap: 8px;
+}
+.chat-input {
+    flex: 1; border: 1px solid #ddd; border-radius: 20px;
+    padding: 8px 16px; font-size: 14px; outline: none;
+    background: #fafafa;
+    -webkit-appearance: none; -moz-appearance: none; appearance: none;
+}
+.chat-input:focus { border-color: #333; background: #fff; }
+.chat-input:disabled { background: #eee; color: #999; }
+.send-btn {
+    background: #111; color: #fff; border: none; border-radius: 50%;
+    width: 38px; height: 38px; font-size: 18px; cursor: pointer; display: flex; 
+    align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+.send-btn:hover { background: #333; }
+.send-btn:disabled { background: #ccc; cursor: default; }
+
+.poll-container { margin: 8px 0; padding: 0 36px; }
+.poll-option {
+    display: flex; align-items: center; border: 1px solid #ddd;
+    border-radius: 8px; padding: 8px 14px; margin-bottom: 6px;
+    cursor: pointer; transition: all 0.15s; background: #fff;
+    font-size: 14px; color: #333;
+}
+.poll-option:hover { border-color: #333; background: #f5f5f5; }
+.poll-option.selected { border-color: #111; background: #111; color: #fff; cursor: default; }
+.poll-option .poll-num { font-weight: 700; margin-right: 10px; min-width: 20px; }
+.poll-option .poll-label { flex: 1; }
+
+.countdown-bar {
+    text-align: center; padding: 12px; background: #f0f0f0;
+    font-size: 13px; color: #666; border-top: 1px solid #eee;
+}
+.round-divider { text-align: center; margin: 14px 0; }
+.round-divider span {
+    display: inline-block; background: #e0e0e0; border-radius: 12px;
+    padding: 3px 14px; font-size: 11px; color: #888;
+    text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .chat-wrapper { border-radius: 0; border: none; max-width: 100%; height: 100vh; display: flex; flex-direction: column; }
+    .chat-body { max-height: none; flex: 1; min-height: 250px; }
+    .chat-input { font-size: 16px; }
+    .msg-partner .bubble, .msg-you .bubble { max-width: 85%; }
+    .poll-container { padding: 0 10px; }
+    .chat-header-name { font-size: 14px; }
+}
+
+/* Tablet */
+@media (min-width: 601px) and (max-width: 900px) {
+    .chat-wrapper { max-width: 90%; }
+}
+
+/* Emoji accept/reject — right-aligned like participant messages */
+.emoji-choice {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 10px 4px 14px 0;
+}
+.emoji-btn {
+    padding: 8px 14px;
+    font-size: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border-radius: 16px 2px 16px 16px;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+}
+.emoji-btn.reject-btn {
+    background: #1a1a1a;
+    border: 2px solid #333;
+    -webkit-animation: popIn 0.4s ease 0.1s forwards, gentlePulse 2.5s ease 0.6s infinite;
+    animation: popIn 0.4s ease 0.1s forwards, gentlePulse 2.5s ease 0.6s infinite;
+}
+.emoji-btn.accept-btn {
+    background: #1a1a1a;
+    border: 2px solid #333;
+    -webkit-animation: popIn 0.4s ease 0.25s forwards, gentlePulse 2.5s ease 0.75s infinite;
+    animation: popIn 0.4s ease 0.25s forwards, gentlePulse 2.5s ease 0.75s infinite;
+}
+.emoji-btn.reject-btn:hover {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+    border-color: #555;
+    background: #2a2a2a;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+.emoji-btn.accept-btn:hover {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+    background: #2a2a2a;
+    border-color: #555;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+.emoji-btn:active {
+    -webkit-transform: scale(0.92);
+    transform: scale(0.92);
+}
+
+/* Pop in from below with slight overshoot */
+@-webkit-keyframes popIn {
+    0% { opacity: 0; -webkit-transform: translateY(20px) scale(0.6); }
+    70% { opacity: 1; -webkit-transform: translateY(-4px) scale(1.05); }
+    100% { opacity: 1; -webkit-transform: translateY(0) scale(1); }
+}
+@keyframes popIn {
+    0% { opacity: 0; transform: translateY(20px) scale(0.6); }
+    70% { opacity: 1; transform: translateY(-4px) scale(1.05); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Gentle floating pulse — subtle, not distracting */
+@-webkit-keyframes gentlePulse {
+    0%, 100% { -webkit-transform: translateY(0); }
+    50% { -webkit-transform: translateY(-5px); }
+}
+@keyframes gentlePulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Unselected emoji fades out */
+.emoji-btn.popping {
+    animation: simpleFade 0.3s ease forwards;
+    pointer-events: none;
+}
+@keyframes simpleFade {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .emoji-btn { padding: 8px 14px; font-size: 24px; }
+    .emoji-choice { gap: 10px; }
+}

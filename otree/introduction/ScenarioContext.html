@@ -1,0 +1,42 @@
+{{ block title }}The scenario{{ endblock }}
+{{ block content }}
+<div class="card mb-4">
+    <div class="card-header bg-dark text-white"><h5 class="mb-0">Imagine...</h5></div>
+    <div class="card-body">
+        <p>You spent the last two years building <strong>LoveLink</strong>, a dating app that's become a hit. You designed how it looks, built everything behind the scenes, grew it from zero to about 500,000 users, and handled everything from getting the word out to answering user complaints.</p>
+
+        <p>LoveLink is popular because it's really good at matching people with the right person. It suggests who you'd get along with, predicts how well two people will click, and even helps start conversations. The catch? That smart part — the recommendation system — is powered by technology you rent from a company called <strong>Volo Technologies</strong>.</p>
+
+        <p>Lately, things have been tight. Running LoveLink is expensive — server costs, marketing, support staff — and your personal savings are running low. You need a way out.</p>
+
+        <p>So you reached out to a wealthy investor, who has offered <strong>{{ acquisition_value }}</strong> to buy LoveLink.</p>
+
+        <p>But, the investor believes Volo Technologies — the company behind your matching system — will demand a share under intellectual property law. Because of that, the investor will not hand over the money until you and Volo Technologies agree on how to split it. The investor has seen deals like this fall apart before and does not want to get dragged into someone else's dispute.</p>
+
+        <p>The condition: <strong>you and Volo Technologies agree on a split. If you can't reach a deal, the investor puts half the money into a holding account until any legal issues are settled — leaving just $250,000 for each of you.</strong></p>
+
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>What you brought to the table</h6>
+                <ul>
+                    <li>You wrote <strong>{{ dev_code_pct }}%</strong> of LoveLink's codebase yourself</li>
+                    <li>The vision, the brand, and the user experience design</li>
+                    <li>500,000 active users, grown through your own marketing over two years</li>
+                    <li>Customer support and day-to-day operations</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h6>What Volo Technologies brought</h6>
+                <ul>
+                    <li>Volo's coding assistant helped you write <strong>{{ volo_code_pct }}%</strong> of the codebase, on top of structure and debugging</li>
+                    <li>Volo's <strong>matching algorithm</strong>, integrated via API — powers the live app</li>
+                    <li>API infrastructure and ongoing algorithm updates</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<p>On the next page, you will learn who you will be negotiating with.</p>
+{{ next_button }}
+{{ endblock }}
