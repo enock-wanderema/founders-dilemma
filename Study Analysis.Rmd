@@ -437,7 +437,7 @@ cat(sprintf("  Analytical sample (positive share): applied next chunk, N = 201\n
 
 ```{r data-rename}
 renameMap <- c(
-  participantCode = "participant.code",
+  participantCode = "participant_id",
   prolificPID     = "participant.label",
   Label           = "participant.condition_label",
   Transparency    = "participant.condition_transparency",
